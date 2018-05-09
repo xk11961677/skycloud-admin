@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 功能模块:  -->
+<mapper namespace="UserEntityMapper" >
+
+	<!--通用表字段列表-->
+	<resultMap id="BaseResultMap" type="com.skycloud.user.entity.UserEntity">
+		<result column="ID" property="id" jdbcType="INTEGER"/>
+		<result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"/>
+		<result column="USER_CODE" property="userCode" jdbcType="VARCHAR"/>
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR"/>
+		<result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR"/>
+		<result column="REAL_NAME" property="realName" jdbcType="VARCHAR"/>
+		<result column="STATUS" property="status" jdbcType="INTEGER"/>
+		<result column="PHOTO" property="photo" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--通用表字段列表-->
+    
+	<!--user customize code start-->
+
+	<!--user customize code end  -->
+    
+	<!--通用查询条件组装-->
+	<sql id="whereContation">
+			<if test="id != null">
+				AND  ID=#{id,jdbcType=INTEGER}  
+			</if>
+			<if test="nickName != null">
+				AND  NICK_NAME=#{nickName,jdbcType=VARCHAR}  
+			</if>
+			<if test="userCode != null">
+				AND  USER_CODE=#{userCode,jdbcType=VARCHAR}  
+			</if>
+			<if test="loginName != null">
+				AND  LOGIN_NAME=#{loginName,jdbcType=VARCHAR}  
+			</if>
+			<if test="loginPassword != null">
+				AND  LOGIN_PASSWORD=#{loginPassword,jdbcType=VARCHAR}  
+			</if>
+			<if test="realName != null">
+				AND  REAL_NAME=#{realName,jdbcType=VARCHAR}  
+			</if>
+			<if test="status != null">
+				AND  STATUS=#{status,jdbcType=INTEGER}  
+			</if>
+			<if test="photo != null">
+				AND  PHOTO=#{photo,jdbcType=VARCHAR}  
+			</if>
+	</sql>
+	
+	<!--查询字段列表拼装-->
+	<sql id="baseColumnList">
+			 ID		 
+			,NICK_NAME		 
+			,USER_CODE		 
+			,LOGIN_NAME		 
+			,LOGIN_PASSWORD		 
+			,REAL_NAME		 
+			,STATUS		 
+			,PHOTO		 
+	</sql>
+	
+	<!--
+	方法名称: insert
+	调用路径: UserEntityMapper.insert
+	开发信息: 
+	处理信息: 保存记录
+	-->
+ 	<insert id="insert" parameterType="com.skycloud.user.entity.UserEntity" >
+	 	INSERT  INTO  USER
+	 		<trim prefix="(" suffix=")" suffixOverrides=",">
+					<if test="id != null">
+					ID,
+					</if>
+					<if test="nickName != null">
+					NICK_NAME,
+					</if>
+					<if test="userCode != null">
+					USER_CODE,
+					</if>
+					<if test="loginName != null">
+					LOGIN_NAME,
+					</if>
+					<if test="loginPassword != null">
+					LOGIN_PASSWORD,
+					</if>
+					<if test="realName != null">
+					REAL_NAME,
+					</if>
+					<if test="status != null">
+					STATUS,
+					</if>
+					<if test="photo != null">
+					PHOTO,
+					</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+					<if test="id != null">
+					 #{id,jdbcType=INTEGER},
+					</if>
+					<if test="nickName != null">
+					 #{nickName,jdbcType=VARCHAR},
+					</if>
+					<if test="userCode != null">
+					 #{userCode,jdbcType=VARCHAR},
+					</if>
+					<if test="loginName != null">
+					 #{loginName,jdbcType=VARCHAR},
+					</if>
+					<if test="loginPassword != null">
+					 #{loginPassword,jdbcType=VARCHAR},
+					</if>
+					<if test="realName != null">
+					 #{realName,jdbcType=VARCHAR},
+					</if>
+					<if test="status != null">
+					 #{status,jdbcType=INTEGER},
+					</if>
+					<if test="photo != null">
+					 #{photo,jdbcType=VARCHAR},
+					</if>
+			</trim>
+	</insert>
+	
+	<!--
+	方法名称: update
+	调用路径: UserEntityMapper.update
+	开发信息: 
+	处理信息: 修改记录
+	-->
+ 	<update id="update" parameterType="com.skycloud.user.entity.UserEntity" >
+		UPDATE   USER  	 
+	  	<set> 
+				<if test="nickName != null">
+			 		NICK_NAME = #{nickName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="userCode != null">
+			 		USER_CODE = #{userCode,jdbcType=VARCHAR},
+			 	</if>
+				<if test="loginName != null">
+			 		LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="loginPassword != null">
+			 		LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+			 	</if>
+				<if test="realName != null">
+			 		REAL_NAME = #{realName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="status != null">
+			 		STATUS = #{status,jdbcType=INTEGER},
+			 	</if>
+				<if test="photo != null">
+			 		PHOTO = #{photo,jdbcType=VARCHAR},
+			 	</if>
+		</set>
+		WHERE  
+			ID = #{id,jdbcType=INTEGER}		 
+	</update>
+	
+	<!--
+	方法名称: updateBak
+	调用路径: UserEntityMapper.updateBak
+	开发信息: 
+	处理信息: 修改记录
+	-->
+ 	<update id="updateBak" parameterType="com.skycloud.user.entity.UserEntity" >
+		UPDATE   USER  	 
+	  	<set> 
+			 		NICK_NAME = #{nickName,jdbcType=VARCHAR},
+			 		USER_CODE = #{userCode,jdbcType=VARCHAR},
+			 		LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			 		LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+			 		REAL_NAME = #{realName,jdbcType=VARCHAR},
+			 		STATUS = #{status,jdbcType=INTEGER},
+			 		PHOTO = #{photo,jdbcType=VARCHAR},
+		</set>
+		WHERE  
+			ID = #{id,jdbcType=INTEGER}		 
+	</update>
+	
+	<!--
+	方法名称: deleteByPriKey
+	调用路径:UserEntityMapper.deleteByPriKey
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="deleteByPriKey" parameterType="com.skycloud.user.entity.UserEntity">
+		DELETE 	FROM USER 	 
+		WHERE 
+			ID = #{id,jdbcType=INTEGER}		 
+	</delete>
+	
+	<!--
+	方法名称: findByPriKey
+	调用路径: UserEntityMapper.findByPriKey
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="findByPriKey" parameterType="com.skycloud.user.entity.UserEntity" resultType="com.skycloud.user.entity.UserEntity">
+		SELECT   
+		   <include refid="baseColumnList"/>
+		FROM   USER         
+		WHERE
+				ID = #{id,jdbcType=INTEGER}		 
+	</select>
+	
+	<!--
+	方法名称: getPagenationList
+	调用路径: UserEntityMapper.getPagenationList
+	开发信息: 
+	处理信息: 分页查询记录
+	-->
+	<select id="getPagenationList" parameterType="com.skycloud.user.entity.UserEntity" resultType="com.skycloud.user.entity.UserEntity">
+		<!-- 分页条 -->
+		<include refid="CommonEntity.paginationPrefix"/>
+		SELECT   
+	 		<include refid="baseColumnList"/>
+		FROM   USER          
+		WHERE 1=1
+		 	<include refid="whereContation"/>
+		 	<if test="columnSort != null">
+		 	ORDER BY ${columnSort}
+		 	</if>
+		<!-- 分页条 -->
+		<include refid="CommonEntity.paginationSuffix"/>
+	</select>
+	
+	<!--
+	方法名称: getPagenationList-count
+	调用路径: UserEntityMapper.getPagenationList-count
+	开发信息: 
+	处理信息: 查询记录数
+	-->
+	<select id="getPagenationList-count" parameterType="com.skycloud.user.entity.UserEntity" resultType="int">
+		SELECT count(1)  FROM  USER     
+		 WHERE 1=1
+		<include refid="whereContation"/>
+	</select>
+	
+	<!--
+	方法名称: getList
+	调用路径: UserEntityMapper.getList
+	开发信息: 
+	处理信息: 根据条件查询记录
+	-->
+	<select id="getList" parameterType="com.skycloud.user.entity.UserEntity" resultType="com.skycloud.user.entity.UserEntity">
+	   SELECT   
+	   		<include refid="baseColumnList"/>
+	   FROM   USER           
+	   WHERE 1=1
+		<include refid="whereContation"/>
+		<if test="columnSort != null">
+		 	ORDER BY ${columnSort}
+		</if>
+		limit 0,100
+	</select>
+	
+	
+	<!--
+	方法名称: batchInsert
+	调用路径: UserEntityMapper.batchInsert
+	开发信息: 
+	处理信息: 保存记录
+	-->
+ 	<insert id="batchInsert" parameterType="java.util.List" >
+	 	INSERT  INTO  USER
+	 		<trim prefix="(" suffix=")" suffixOverrides=",">
+					ID,
+					NICK_NAME,
+					USER_CODE,
+					LOGIN_NAME,
+					LOGIN_PASSWORD,
+					REAL_NAME,
+					STATUS,
+					PHOTO,
+			</trim>
+			values
+			<foreach collection="list" item="entity" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+					 #{entity.id,jdbcType=INTEGER},
+					 #{entity.nickName,jdbcType=VARCHAR},
+					 #{entity.userCode,jdbcType=VARCHAR},
+					 #{entity.loginName,jdbcType=VARCHAR},
+					 #{entity.loginPassword,jdbcType=VARCHAR},
+					 #{entity.realName,jdbcType=VARCHAR},
+					 #{entity.status,jdbcType=INTEGER},
+					 #{entity.photo,jdbcType=VARCHAR},
+			</trim>
+			</foreach>
+	</insert>
+	<!--
+	方法名称: batchUpdate
+	调用路径: UserEntityMapper.batchUpdate
+	开发信息: 
+	处理信息: 修改记录
+	-->
+ 	<update id="batchUpdate" parameterType="java.util.List" >
+ 		<foreach collection="list" item="entity" separator=",">
+		UPDATE   USER  	 
+	  	<set> 
+				<if test="nickName != null">
+			 		NICK_NAME = #{entity.nickName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="userCode != null">
+			 		USER_CODE = #{entity.userCode,jdbcType=VARCHAR},
+			 	</if>
+				<if test="loginName != null">
+			 		LOGIN_NAME = #{entity.loginName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="loginPassword != null">
+			 		LOGIN_PASSWORD = #{entity.loginPassword,jdbcType=VARCHAR},
+			 	</if>
+				<if test="realName != null">
+			 		REAL_NAME = #{entity.realName,jdbcType=VARCHAR},
+			 	</if>
+				<if test="status != null">
+			 		STATUS = #{entity.status,jdbcType=INTEGER},
+			 	</if>
+				<if test="photo != null">
+			 		PHOTO = #{entity.photo,jdbcType=VARCHAR},
+			 	</if>
+		</set>
+		WHERE  
+			ID = #{id,jdbcType=INTEGER}		 
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,2 @@
+
+-Dupload.ip=${ip} -Dupload.workspace=${workspace}

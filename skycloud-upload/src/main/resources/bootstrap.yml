@@ -1,0 +1,36 @@
+server:
+  contextPath: /upload
+  port: 8103
+
+spring:
+  application:
+    name: upload
+  cloud:
+    config:
+      uri: ${config_service_uri:http://59.110.63.236:8888/config}
+      name: upload
+      profile: ${config_profile:default}
+  zipkin:
+      base-url: ${zipkin_service_uri:http://localhost:9411}
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://59.110.63.236:8761/eureka/
+#  instance:
+#    preferIpAddress: true
+#     #    ipAddress:  59.110.63.236
+#    status-page-url-path: /upload/info
+#    health-check-url-path: /upload/health
+
+
+multipart:
+  maxFileSize: 10Mb
+  maxRequestSize: 20Mb
+
+upload:
+  mimeTypes: dot:application/msword;xlt:application/vnd.ms-excel
+
+auth:
+  clientId: upload
+  secret: 123456

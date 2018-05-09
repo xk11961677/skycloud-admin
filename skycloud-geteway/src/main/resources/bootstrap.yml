@@ -1,0 +1,14 @@
+server:
+  port: 8105
+
+spring:
+  application:
+    name: geteway
+
+  cloud:
+      config:
+        uri: ${config_service_uri:http://59.110.63.236:8888/config}
+        name: geteway
+        profile: ${config_profile:default}
+
+
