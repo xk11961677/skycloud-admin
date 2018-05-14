@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>com.skycloud</groupId>
-	<artifactId>skycloud-permission</artifactId>
+	<artifactId>skycloud-manager</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>skycloud-permission</name>
-	<description>权限管理</description>
+	<name>skycloud-manager</name>
+	<description>管理平台</description>
 
 	<dependencies>
 
