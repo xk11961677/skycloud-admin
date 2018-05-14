@@ -42,5 +42,6 @@ spring:
 
 
 auth:
-  clientId: permission
-  secret: 123456
+  client:
+    id: manager
+    secret: 123456

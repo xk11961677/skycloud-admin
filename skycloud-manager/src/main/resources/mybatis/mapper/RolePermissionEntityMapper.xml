@@ -4,7 +4,7 @@
 <mapper namespace="RolePermissionEntityMapper" >
 
 	<!--通用表字段列表-->
-	<resultMap id="BaseResultMap" type="com.skycloud.permission.entity.RolePermissionEntity">
+	<resultMap id="BaseResultMap" type="com.skycloud.manager.entity.RolePermissionEntity">
 		<result column="ID" property="id" jdbcType="INTEGER"/>
 		<result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/>
 		<result column="PERMISSION_ID" property="permissionId" jdbcType="INTEGER"/>
@@ -41,7 +41,7 @@
 	开发信息: 
 	处理信息: 保存记录
 	-->
- 	<insert id="insert" parameterType="com.skycloud.permission.entity.RolePermissionEntity" >
+ 	<insert id="insert" parameterType="com.skycloud.manager.entity.RolePermissionEntity" >
 	 	INSERT  INTO  ROLE_PERMISSION
 	 		<trim prefix="(" suffix=")" suffixOverrides=",">
 					<if test="id != null">
@@ -73,7 +73,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="update" parameterType="com.skycloud.permission.entity.RolePermissionEntity" >
+ 	<update id="update" parameterType="com.skycloud.manager.entity.RolePermissionEntity" >
 		UPDATE   ROLE_PERMISSION  	 
 	  	<set> 
 				<if test="roleId != null">
@@ -93,7 +93,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="updateBak" parameterType="com.skycloud.permission.entity.RolePermissionEntity" >
+ 	<update id="updateBak" parameterType="com.skycloud.manager.entity.RolePermissionEntity" >
 		UPDATE   ROLE_PERMISSION  	 
 	  	<set> 
 			 		ROLE_ID = #{roleId,jdbcType=INTEGER},
@@ -109,7 +109,7 @@
 	开发信息: 
 	处理信息: 删除记录
 	-->
-	<delete id="deleteByPriKey" parameterType="com.skycloud.permission.entity.RolePermissionEntity">
+	<delete id="deleteByPriKey" parameterType="com.skycloud.manager.entity.RolePermissionEntity">
 		DELETE 	FROM ROLE_PERMISSION 	 
 		WHERE 
 			ID = #{id,jdbcType=INTEGER}		 
@@ -121,7 +121,7 @@
 	开发信息: 
 	处理信息: 根据主键查询记录
 	-->
-	<select id="findByPriKey" parameterType="com.skycloud.permission.entity.RolePermissionEntity"  resultType="com.skycloud.permission.entity.RolePermissionEntity">
+	<select id="findByPriKey" parameterType="com.skycloud.manager.entity.RolePermissionEntity" resultType="com.skycloud.manager.entity.RolePermissionEntity">
 		SELECT   
 		   <include refid="baseColumnList"/>
 		FROM   ROLE_PERMISSION         
@@ -135,7 +135,7 @@
 	开发信息: 
 	处理信息: 分页查询记录
 	-->
-	<select id="getPagenationList" parameterType="com.skycloud.permission.entity.RolePermissionEntity"  resultType="com.skycloud.permission.entity.RolePermissionEntity">
+	<select id="getPagenationList" parameterType="com.skycloud.manager.entity.RolePermissionEntity" resultType="com.skycloud.manager.entity.RolePermissionEntity">
 		<!-- 分页条 -->
 		<include refid="CommonEntity.paginationPrefix"/>
 		SELECT   
@@ -156,7 +156,7 @@
 	开发信息: 
 	处理信息: 查询记录数
 	-->
-	<select id="getPagenationList-count" parameterType="com.skycloud.permission.entity.RolePermissionEntity" resultType="int">
+	<select id="getPagenationList-count" parameterType="com.skycloud.manager.entity.RolePermissionEntity" resultType="int">
 		SELECT count(1)  FROM  ROLE_PERMISSION     
 		 WHERE 1=1
 		<include refid="whereContation"/>
@@ -168,7 +168,7 @@
 	开发信息: 
 	处理信息: 根据条件查询记录
 	-->
-	<select id="getList" parameterType="com.skycloud.permission.entity.RolePermissionEntity"  resultType="com.skycloud.permission.entity.RolePermissionEntity">
+	<select id="getList" parameterType="com.skycloud.manager.entity.RolePermissionEntity" resultType="com.skycloud.manager.entity.RolePermissionEntity">
 	   SELECT   
 	   		<include refid="baseColumnList"/>
 	   FROM   ROLE_PERMISSION           
