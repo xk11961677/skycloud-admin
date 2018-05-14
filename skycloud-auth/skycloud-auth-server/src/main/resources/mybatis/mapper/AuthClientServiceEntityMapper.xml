@@ -4,7 +4,7 @@
 <mapper namespace="AuthClientServiceEntityMapper" >
 
 	<!--通用表字段列表-->
-	<resultMap id="BaseResultMap" type="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity">
+	<resultMap id="BaseResultMap" type="com.skycloud.auth.server.entity.AuthClientServiceEntity">
 		<result column="ID" property="id" jdbcType="INTEGER"/>
 		<result column="SERVICE_ID" property="serviceId" jdbcType="VARCHAR"/>
 		<result column="CLIENT_ID" property="clientId" jdbcType="VARCHAR"/>
@@ -106,7 +106,7 @@
 	开发信息: 
 	处理信息: 保存记录
 	-->
- 	<insert id="insert" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity" >
+ 	<insert id="insert" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" >
 	 	INSERT  INTO  AUTH_CLIENT_SERVICE
 	 		<trim prefix="(" suffix=")" suffixOverrides=",">
 					<if test="id != null">
@@ -216,7 +216,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="update" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity" >
+ 	<update id="update" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" >
 		UPDATE   AUTH_CLIENT_SERVICE  	 
 	  	<set> 
 				<if test="serviceId != null">
@@ -275,7 +275,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="updateBak" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity" >
+ 	<update id="updateBak" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" >
 		UPDATE   AUTH_CLIENT_SERVICE  	 
 	  	<set> 
 			 		SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
@@ -304,7 +304,7 @@
 	开发信息: 
 	处理信息: 删除记录
 	-->
-	<delete id="deleteByPriKey" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity">
+	<delete id="deleteByPriKey" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity">
 		DELETE 	FROM AUTH_CLIENT_SERVICE 	 
 		WHERE 
 			ID = #{id,jdbcType=INTEGER}		 
@@ -316,7 +316,7 @@
 	开发信息: 
 	处理信息: 根据主键查询记录
 	-->
-	<select id="findByPriKey" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity">
+	<select id="findByPriKey" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" resultType="com.skycloud.auth.server.entity.AuthClientServiceEntity">
 		SELECT   
 		   <include refid="baseColumnList"/>
 		FROM   AUTH_CLIENT_SERVICE         
@@ -330,7 +330,7 @@
 	开发信息: 
 	处理信息: 分页查询记录
 	-->
-	<select id="getPagenationList" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity">
+	<select id="getPagenationList" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" resultType="com.skycloud.auth.server.entity.AuthClientServiceEntity">
 		<!-- 分页条 -->
 		<include refid="CommonEntity.paginationPrefix"/>
 		SELECT   
@@ -351,7 +351,7 @@
 	开发信息: 
 	处理信息: 查询记录数
 	-->
-	<select id="getPagenationList-count" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity" resultType="int">
+	<select id="getPagenationList-count" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" resultType="int">
 		SELECT count(1)  FROM  AUTH_CLIENT_SERVICE     
 		 WHERE 1=1
 		<include refid="whereContation"/>
@@ -363,7 +363,7 @@
 	开发信息: 
 	处理信息: 根据条件查询记录
 	-->
-	<select id="getList" parameterType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientServiceEntity">
+	<select id="getList" parameterType="com.skycloud.auth.server.entity.AuthClientServiceEntity" resultType="com.skycloud.auth.server.entity.AuthClientServiceEntity">
 	   SELECT   
 	   		<include refid="baseColumnList"/>
 	   FROM   AUTH_CLIENT_SERVICE           
@@ -486,7 +486,7 @@
 	</update>
 
 
-	<select id="getAllowClient" parameterType="java.lang.String" resultType="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<select id="getAllowClient" parameterType="java.lang.String" resultType="com.skycloud.auth.server.entity.AuthClientEntity">
 		select
 			 c.ID
 			,c.CODE

@@ -1,9 +1,9 @@
 package com.skycloud.auth.client.client;
 
-import com.skycloud.base.common.base.Result;
-import com.skycloud.base.common.client.AbstractClientFallback;
+import com.skycloud.common.base.Result;
+import com.skycloud.common.client.AbstractClientFallback;
 import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
-import com.skycloud.base.oauth.common.dto.AuthClientDTO;
+import com.skycloud.auth.common.dto.AuthClientDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;

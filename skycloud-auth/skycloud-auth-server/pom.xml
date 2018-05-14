@@ -107,7 +107,7 @@
                 <version>1.4.2.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.skycloud.base.oauth.server.AuthApplication</mainClass>
+                    <mainClass>com.skycloud.auth.server.AuthApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

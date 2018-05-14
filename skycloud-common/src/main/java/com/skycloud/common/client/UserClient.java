@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @FeignClient(name = "user" ,fallback = UserClient.UserClientFallback.class)
 public interface UserClient {
 
-    @RequestMapping(value = "/user/getUser",method = RequestMethod.POST)
+    @RequestMapping(value = "/user/getUser",method = RequestMethod.GET)
     @ResponseBody
     Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password);
 

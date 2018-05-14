@@ -1,7 +1,7 @@
 package com.skycloud.user.web;
 
-import com.skycloud.base.common.base.Result;
-import com.skycloud.base.common.dto.UserDTO;
+import com.skycloud.common.base.Result;
+import com.skycloud.common.dto.UserDTO;
 import com.skycloud.user.entity.UserEntity;
 import com.skycloud.user.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -37,7 +37,7 @@ public class UserController {
         UserEntity userEntity = new UserEntity();
         userEntity.setLoginName(loginName);
         userEntity.setLoginPassword(password);
-        UserEntity user = (UserEntity) userService.get(userEntity);
+        UserEntity user = (UserEntity) userService.getOne(userEntity);
         if (user != null) {
             userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);

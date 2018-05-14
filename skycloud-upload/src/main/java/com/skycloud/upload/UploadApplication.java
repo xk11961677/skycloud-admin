@@ -1,6 +1,6 @@
 package com.skycloud.upload;
 
-import com.skycloud.base.oauth.client.EnableAuthClient;
+import com.skycloud.auth.client.EnableAuthClient;
 import com.skycloud.upload.configuration.OssConfiguration;
 import com.skycloud.upload.configuration.UploadConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;

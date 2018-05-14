@@ -1,14 +1,17 @@
 package com.skycloud.upload.web;
 
-import com.skycloud.base.common.base.Result;
-import com.skycloud.base.common.client.UploadClient;
-import com.skycloud.base.common.client.UserClient;
-import com.skycloud.base.common.dto.UserDTO;
+import com.skycloud.common.base.Result;
+import com.skycloud.common.client.UploadClient;
+import com.skycloud.common.client.UserClient;
+import com.skycloud.common.dto.UserDTO;
+import com.skycloud.upload.configuration.OssConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 
 /**
  * @author sky
@@ -20,6 +23,9 @@ public class AuthTestController {
     @Autowired
     @SuppressWarnings(value={"all"})
     private UserClient userClient;
+
+    @Resource
+    private OssConfiguration oc;
 
     /**
      *
@@ -42,7 +48,8 @@ public class AuthTestController {
     @RequestMapping("authTest")
     @ResponseBody
     public Result<UserDTO> authTest() {
-        Result<UserDTO> user = userClient.getUser("111", "111");
+        oc.getAliyunAccessKeyId();
+        Result<UserDTO> user = userClient.getUser("admin", "admin");
         return user;
     }
 }

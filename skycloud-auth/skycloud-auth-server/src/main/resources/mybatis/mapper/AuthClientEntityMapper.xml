@@ -4,7 +4,7 @@
 <mapper namespace="AuthClientEntityMapper" >
 
 	<!--通用表字段列表-->
-	<resultMap id="BaseResultMap" type="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<resultMap id="BaseResultMap" type="com.skycloud.auth.server.entity.AuthClientEntity">
 		<result column="ID" property="id" jdbcType="INTEGER"/>
 		<result column="CODE" property="code" jdbcType="VARCHAR"/>
 		<result column="SECRET" property="secret" jdbcType="VARCHAR"/>
@@ -136,7 +136,7 @@
 	开发信息: 
 	处理信息: 保存记录
 	-->
- 	<insert id="insert" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity" >
+ 	<insert id="insert" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" >
 	 	INSERT  INTO  AUTH_CLIENT
 	 		<trim prefix="(" suffix=")" suffixOverrides=",">
 					<if test="id != null">
@@ -282,7 +282,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="update" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity" >
+ 	<update id="update" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" >
 		UPDATE   AUTH_CLIENT  	 
 	  	<set> 
 				<if test="code != null">
@@ -359,7 +359,7 @@
 	开发信息: 
 	处理信息: 修改记录
 	-->
- 	<update id="updateBak" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity" >
+ 	<update id="updateBak" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" >
 		UPDATE   AUTH_CLIENT  	 
 	  	<set> 
 			 		CODE = #{code,jdbcType=VARCHAR},
@@ -394,7 +394,7 @@
 	开发信息: 
 	处理信息: 删除记录
 	-->
-	<delete id="deleteByPriKey" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<delete id="deleteByPriKey" parameterType="com.skycloud.auth.server.entity.AuthClientEntity">
 		DELETE 	FROM AUTH_CLIENT 	 
 		WHERE 
 			ID = #{id,jdbcType=INTEGER}		 
@@ -406,7 +406,7 @@
 	开发信息: 
 	处理信息: 根据主键查询记录
 	-->
-	<select id="findByPriKey" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<select id="findByPriKey" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" resultType="com.skycloud.auth.server.entity.AuthClientEntity">
 		SELECT   
 		   <include refid="baseColumnList"/>
 		FROM   AUTH_CLIENT         
@@ -420,7 +420,7 @@
 	开发信息: 
 	处理信息: 分页查询记录
 	-->
-	<select id="getPagenationList" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<select id="getPagenationList" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" resultType="com.skycloud.auth.server.entity.AuthClientEntity">
 		<!-- 分页条 -->
 		<include refid="CommonEntity.paginationPrefix"/>
 		SELECT   
@@ -441,7 +441,7 @@
 	开发信息: 
 	处理信息: 查询记录数
 	-->
-	<select id="getPagenationList-count" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity" resultType="int">
+	<select id="getPagenationList-count" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" resultType="int">
 		SELECT count(1)  FROM  AUTH_CLIENT     
 		 WHERE 1=1
 		<include refid="whereContation"/>
@@ -453,7 +453,7 @@
 	开发信息: 
 	处理信息: 根据条件查询记录
 	-->
-	<select id="getList" parameterType="com.skycloud.base.oauth.server.entity.AuthClientEntity"  resultType="com.skycloud.base.oauth.server.entity.AuthClientEntity">
+	<select id="getList" parameterType="com.skycloud.auth.server.entity.AuthClientEntity" resultType="com.skycloud.auth.server.entity.AuthClientEntity">
 	   SELECT   
 	   		<include refid="baseColumnList"/>
 	   FROM   AUTH_CLIENT           

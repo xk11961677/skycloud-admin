@@ -3,12 +3,12 @@ server:
 
 spring:
   application:
-    name: oauth
+    name: auth
 
   cloud:
     config:
-      uri: ${config_service_uri:http://localhost:8888/config}
-      name: oauth
+      uri: ${config_service_uri:http://192.168.43.217:8888/config}
+      name: auth
       profile: ${config_profile:default}
 
   zipkin:

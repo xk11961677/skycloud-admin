@@ -7,6 +7,25 @@ import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
  */
 public class AuthFeignContext {
 
-    public final static ThreadLocal<IgnoreAuthClientURL> instance = new ThreadLocal<>();
+    private final ThreadLocal<IgnoreAuthClientURL> threadLocal = new ThreadLocal<>();
+
+    private final static AuthFeignContext instance = new AuthFeignContext();
+
+    private AuthFeignContext() {
+    }
+
+    private AuthFeignContext getAuthFeignContext() {
+        return instance;
+    }
+
+
+    public static IgnoreAuthClientURL getIgnoreAuthClientURL() {
+        return instance.threadLocal.get();
+    }
+
+    public static void setIgnoreAuthClientURL(IgnoreAuthClientURL ignoreAuthClientURL) {
+        instance.threadLocal.set(ignoreAuthClientURL);
+    }
+
 
 }

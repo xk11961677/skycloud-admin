@@ -7,7 +7,7 @@ spring:
 
   cloud:
     config:
-      uri: ${config_service_uri:http://localhost:8888/config}
+      uri: ${config_service_uri:http://192.168.43.217:8888/config}
       name: user
       profile: ${config_profile:default}
 
@@ -43,5 +43,6 @@ spring:
 
 
 auth:
-  clientId: user
-  secret: 123456
+  client:
+    id: user
+    secret: 123456

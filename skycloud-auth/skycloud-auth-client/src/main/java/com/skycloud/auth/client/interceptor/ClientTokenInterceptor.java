@@ -1,23 +1,23 @@
 package com.skycloud.auth.client.interceptor;
 
 import com.skycloud.auth.client.client.AuthClient;
-import com.skycloud.auth.client.config.AuthProperties;
-import com.skycloud.base.common.base.Result;
+import com.skycloud.auth.client.configuration.ClientConfiguration;
+import com.skycloud.common.base.Result;
 import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
-import com.skycloud.base.oauth.common.dto.AuthClientDTO;
-import com.skycloud.base.oauth.common.dto.AuthJwtDTO;
-import com.skycloud.base.oauth.common.utils.JwtUtil;
+import com.skycloud.auth.common.dto.AuthClientDTO;
+import com.skycloud.auth.common.dto.AuthJwtDTO;
+import com.skycloud.auth.common.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * @author sky
@@ -28,8 +28,9 @@ import java.util.List;
 @Configuration
 public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
 
+    @SuppressWarnings("all")
     @Autowired
-    private AuthProperties authProperties;
+    private ClientConfiguration clientConfiguration;
 
     @Autowired
     @SuppressWarnings("all")
@@ -52,7 +53,7 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
 
-        RequestMapping clazzAnnotation = handlerMethod.getBean().getClass().getAnnotation(RequestMapping.class);
+        IgnoreAuthClientURL clazzAnnotation = handlerMethod.getBean().getClass().getAnnotation(IgnoreAuthClientURL.class);
 
         IgnoreAuthClientURL methodAnnotation = handlerMethod.getMethodAnnotation(IgnoreAuthClientURL.class);
 
@@ -60,7 +61,7 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        String header = request.getHeader(authProperties.getTokenHeader());
+        String header = request.getHeader(clientConfiguration.getClientTokenHeader());
 
         AuthJwtDTO authJwtDTO = JwtUtil.unsign(header, AuthJwtDTO.class);
 
@@ -69,12 +70,7 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
             Result<List<AuthClientDTO>> result = authClient.getAllowClient(authJwtDTO.getId() + "");
 
             if(result !=null && result.getData() != null) {
-                for(AuthClientDTO dto : result.getData()) {
-                    if(dto.getCode().equals(appName)) {
-                        flag = true;
-                        break;
-                    }
-                }
+                flag = result.getData().parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent();
             }
         }
         return flag;

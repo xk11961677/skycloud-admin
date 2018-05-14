@@ -41,7 +41,7 @@ public class AuthFeignHandler implements InvocationHandler {
             if (Objects.isNull(ignoreAuthClientURL)) {
                 return this.handlers.get(method).invoke(args);
             } else {
-                AuthFeignContext.instance.set(ignoreAuthClientURL);
+                AuthFeignContext.setIgnoreAuthClientURL(ignoreAuthClientURL);
                 return this.handlers.get(method).invoke(args);
             }
         }

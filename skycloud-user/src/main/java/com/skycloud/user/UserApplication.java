@@ -1,5 +1,6 @@
 package com.skycloud.user;
 
+import com.skycloud.auth.client.EnableAuthClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringCloudApplication
 @EnableEurekaClient
+@EnableAuthClient
 public class UserApplication {
 
     @LoadBalanced
