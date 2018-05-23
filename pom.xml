@@ -22,7 +22,7 @@
         <module>skycloud-upload</module>
         <module>skycloud-auth</module>
         <module>skycloud-geteway</module>
-        <module>skycloud-permission</module>
+        <module>skycloud-manager</module>
     </modules>
 
     <properties>
