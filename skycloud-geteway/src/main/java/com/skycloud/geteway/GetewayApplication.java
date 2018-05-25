@@ -1,5 +1,6 @@
 package com.skycloud.geteway;
 
+import com.skycloud.auth.client.EnableAuthClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringCloudApplication
 @EnableZuulProxy
+@EnableAuthClient
 public class GetewayApplication {
 
 

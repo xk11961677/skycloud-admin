@@ -66,6 +66,11 @@
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.skycloud</groupId>
+            <artifactId>skycloud-auth-client</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

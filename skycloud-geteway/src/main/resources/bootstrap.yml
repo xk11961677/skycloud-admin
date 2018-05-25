@@ -12,3 +12,7 @@ spring:
 #        profile: ${config_profile:default}
 
 
+auth:
+  client:
+    id: getway
+    secret: 123456
