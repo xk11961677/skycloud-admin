@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author sky
  */
-@FeignClient(name = "upload", fallback = UploadClient.UploadClientFallback.class)
-public interface UploadClient {
+@FeignClient(name = "upload", fallback = UploadApi.UploadApiFallback.class)
+public interface UploadApi {
 
 
 	@RequestMapping(value="/upload/test/test",method=RequestMethod.POST)
@@ -26,7 +26,7 @@ public interface UploadClient {
 	 *
 	 */
 	@Component
-	class UploadClientFallback  implements UploadClient {
+	class UploadApiFallback  implements UploadApi {
 
 		@Override
 		public Result send(@RequestBody TestDTO testDTO) {

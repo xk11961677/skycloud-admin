@@ -1,7 +1,7 @@
 package com.skycloud.upload.web;
 
-import com.skycloud.api.client.upload.UploadClient;
-import com.skycloud.api.client.user.UserClient;
+import com.skycloud.api.client.upload.UploadApi;
+import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.common.base.Result;
 import com.skycloud.upload.configuration.OssConfiguration;
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class AuthTestController {
 
     @Resource
-    private UserClient userClient;
+    private UserApi userApi;
 
     @Resource
     private OssConfiguration oc;
@@ -31,9 +31,9 @@ public class AuthTestController {
      */
     @RequestMapping("test")
     @ResponseBody
-    public Result<UploadClient.TestDTO> test(@RequestBody UploadClient.TestDTO testDTO) {
+    public Result<UploadApi.TestDTO> test(@RequestBody UploadApi.TestDTO testDTO) {
         System.out.println("===========>>:{}"+testDTO.getName());
-        UploadClient.TestDTO dto = new UploadClient.TestDTO();
+        UploadApi.TestDTO dto = new UploadApi.TestDTO();
         dto.setName("result name 123");
         return Result.getSuccessResult(dto);
     }
@@ -46,7 +46,7 @@ public class AuthTestController {
     @ResponseBody
     public Result<UserDTO> authTest() {
         oc.getAliyunAccessKeyId();
-        Result<UserDTO> user = userClient.getUser("admin", "admin");
+        Result<UserDTO> user = userApi.getUser("admin", "admin");
         return user;
     }
 }

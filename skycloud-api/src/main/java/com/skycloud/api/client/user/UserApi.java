@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author sky
  **/
-@FeignClient(name = "user" ,fallback = UserClient.UserClientFallback.class)
-public interface UserClient {
+@FeignClient(name = "user" ,fallback = UserApi.UserApiFallback.class)
+public interface UserApi {
 
     @RequestMapping(value = "/user/getUser",method = RequestMethod.GET)
     @ResponseBody
     Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password);
 
     @Component
-    class UserClientFallback implements UserClient {
+    class UserApiFallback implements UserApi {
 
         @Override
         public Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password) {

@@ -1,13 +1,12 @@
 package com.skycloud.auth.server.web;
 
-import com.skycloud.api.client.user.UserClient;
+import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
 import com.skycloud.common.base.Result;
 import com.skycloud.common.enumcode.FailureCodeEnum;
 import com.skycloud.auth.server.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthController {
 
     @Resource
-    private UserClient userClient;
+    private UserApi userApi;
 
     @Resource
     private AuthService authService;
@@ -43,7 +42,7 @@ public class AuthController {
     @ResponseBody
     public Result<String> crtAuthenticationToken(String username , String password) {
 
-        Result<UserDTO> result = userClient.getUser(username, password);
+        Result<UserDTO> result = userApi.getUser(username, password);
 
         UserDTO userDTO  = result.getData();
 
