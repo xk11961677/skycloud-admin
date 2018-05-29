@@ -47,7 +47,7 @@ zuul:
 
 gate:
   ignore:
-    startWith: /auth/jwt,/user/user
+    startWith: /static,/auth/jwt,/user/user
 
 
 auth:
