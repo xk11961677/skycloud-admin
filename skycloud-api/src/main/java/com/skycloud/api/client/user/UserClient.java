@@ -1,7 +1,7 @@
-package com.skycloud.common.client;
+package com.skycloud.api.client.user;
 
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.common.base.Result;
-import com.skycloud.common.dto.UserDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public interface UserClient {
     Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password);
 
     @Component
-    class UserClientFallback extends AbstractClientFallback implements UserClient {
+    class UserClientFallback implements UserClient {
 
         @Override
         public Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password) {

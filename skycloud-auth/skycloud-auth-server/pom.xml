@@ -85,6 +85,11 @@
             <artifactId>skycloud-auth-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.skycloud</groupId>
+            <artifactId>skycloud-api</artifactId>
+        </dependency>
+
 
     </dependencies>
 

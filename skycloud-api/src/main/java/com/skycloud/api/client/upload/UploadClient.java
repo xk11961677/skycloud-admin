@@ -1,4 +1,4 @@
-package com.skycloud.common.client;
+package com.skycloud.api.client.upload;
 
 import com.skycloud.common.base.Result;
 import lombok.Data;
@@ -26,34 +26,19 @@ public interface UploadClient {
 	 *
 	 */
 	@Component
-	static class UploadClientFallback extends AbstractClientFallback implements UploadClient {
+	class UploadClientFallback  implements UploadClient {
 
 		@Override
 		public Result send(@RequestBody TestDTO testDTO) {
 			return new Result();
 		}
 
-		/**
-		 * 构造
-		 */
-		/*public SMSClientFallback() {
-			super(SMS);
-		}*/
-
 
 
 	}
 	
-	/*@Data
-	static class SMS {
-		String content;
-		String group;
-		Date date;
-		String[] to;
-	}*/
-
 	@Data
-	static class TestDTO {
+	class TestDTO {
 		String name;
 	}
 

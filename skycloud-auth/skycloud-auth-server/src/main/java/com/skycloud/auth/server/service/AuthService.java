@@ -1,7 +1,7 @@
 package com.skycloud.auth.server.service;
 
 
-import com.skycloud.common.dto.UserDTO;
+import com.skycloud.api.dto.UserDTO;
 
 /**
  * @author sky

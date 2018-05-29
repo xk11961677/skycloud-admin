@@ -3,19 +3,19 @@ package com.skycloud.geteway.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.client.AuthClient;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMethod;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -26,15 +26,15 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class AdminAccessFilter extends ZuulFilter {
 
-    @Autowired
+    @Resource
     @Lazy
     private AuthClient authClient;
 
-    @Autowired
+    @Resource
     @Lazy
     private UserAuthConfiguration userAuthConfiguration;
 
-    @Autowired
+    @Resource
     @Lazy
     private ClientConfiguration clientConfiguration;
 

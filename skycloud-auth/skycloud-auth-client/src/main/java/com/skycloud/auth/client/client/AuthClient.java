@@ -1,7 +1,6 @@
 package com.skycloud.auth.client.client;
 
 import com.skycloud.common.base.Result;
-import com.skycloud.common.client.AbstractClientFallback;
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -22,9 +21,8 @@ public interface AuthClient {
      * @return
      */
     @RequestMapping("/client/token")
-    @ResponseBody
     @IgnoreClientToken
-    Result<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
+    @ResponseBody Result<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 
     /**
      * 根据clientId获取所有可访问服务
@@ -32,9 +30,8 @@ public interface AuthClient {
      * @return
      */
     @RequestMapping("/client/myClient")
-    @ResponseBody
     @IgnoreClientToken
-    Result<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
+    @ResponseBody Result<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
 
     /**
      * 登录获取token
@@ -42,25 +39,23 @@ public interface AuthClient {
      * @param password
      * @return
      */
-    @RequestMapping("/jwt/token")
-    @ResponseBody
+    @RequestMapping("/auth/token")
     @IgnoreClientToken
-    Result<String> login(@RequestParam("username") String username ,@RequestParam("password") String password);
+    @ResponseBody Result<String> login(@RequestParam("username") String username ,@RequestParam("password") String password);
 
     /**
      * 验证登录获取的token是否有效
      * @return
      */
-    @RequestMapping("/jwt/verify")
-    @ResponseBody
+    @RequestMapping("/auth/verify")
     @IgnoreClientToken
-    Result<Boolean> verify();
+    @ResponseBody Result<Boolean> verify();
 
 
 
 
     @Component
-    class AuthFeignFallback extends AbstractClientFallback implements AuthClient {
+    class AuthFeignFallback implements AuthClient {
 
         @Override
         public Result getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {

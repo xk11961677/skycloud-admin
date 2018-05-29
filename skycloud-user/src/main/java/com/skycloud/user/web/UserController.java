@@ -1,7 +1,7 @@
 package com.skycloud.user.web;
 
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.common.base.Result;
-import com.skycloud.common.dto.UserDTO;
 import com.skycloud.user.entity.UserEntity;
 import com.skycloud.user.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -25,18 +25,18 @@ public class UserController {
     /**
      * 根据用户名和密码获取用户
      *
-     * @param loginName
+     * @param username
      * @param password
      * @return
      */
     @RequestMapping("getUser")
     @ResponseBody
-    public Result<UserDTO> getUser(String loginName, String password) {
+    public Result<UserDTO> getUser(String username, String password) {
         Result<UserDTO> result;
         UserDTO userDTO = null;
         UserEntity userEntity = new UserEntity();
-        userEntity.setLoginName(loginName);
-        userEntity.setLoginPassword(password);
+        userEntity.setUserName(username);
+        userEntity.setPassword(password);
         UserEntity user = (UserEntity) userService.getOne(userEntity);
         if (user != null) {
             userDTO = new UserDTO();

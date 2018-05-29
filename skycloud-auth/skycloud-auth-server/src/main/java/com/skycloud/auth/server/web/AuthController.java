@@ -1,9 +1,9 @@
 package com.skycloud.auth.server.web;
 
+import com.skycloud.api.client.user.UserClient;
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
 import com.skycloud.common.base.Result;
-import com.skycloud.common.client.UserClient;
-import com.skycloud.common.dto.UserDTO;
 import com.skycloud.common.enumcode.FailureCodeEnum;
 import com.skycloud.auth.server.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -19,17 +20,17 @@ import javax.servlet.http.HttpServletRequest;
  * @description 统一认证服务接口
  **/
 @Controller
-@RequestMapping("jwt")
+@RequestMapping("auth")
 @Slf4j
 public class AuthController {
 
-    @Autowired
+    @Resource
     private UserClient userClient;
 
-    @Autowired
+    @Resource
     private AuthService authService;
 
-    @Autowired
+    @Resource
     private UserAuthConfiguration userAuthConfiguration;
 
     /**

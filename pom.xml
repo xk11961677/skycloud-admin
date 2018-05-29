@@ -23,6 +23,7 @@
         <module>skycloud-auth</module>
         <module>skycloud-geteway</module>
         <module>skycloud-manager</module>
+        <module>skycloud-api</module>
     </modules>
 
     <properties>
@@ -50,6 +51,12 @@
             <dependency>
                 <groupId>com.skycloud</groupId>
                 <artifactId>skycloud-auth-common</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.skycloud</groupId>
+                <artifactId>skycloud-api</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
