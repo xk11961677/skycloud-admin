@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: permission
+    name: manager
   cloud:
     config:
       uri: ${config_service_uri:http://localhost:8888/config}
-      name: permission
+      name: manager
       profile: ${config_profile:default}
 
   zipkin:
