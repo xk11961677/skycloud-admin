@@ -11,6 +11,10 @@ spring:
 #        name: geteway
 #        profile: ${config_profile:default}
 
+gate:
+  ignore:
+    startWith: /auth/jwt
+
 
 auth:
   client:

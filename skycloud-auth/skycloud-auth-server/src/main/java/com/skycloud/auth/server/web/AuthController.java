@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @description 统一认证服务接口
  **/
 @Controller
-@RequestMapping("auth")
+@RequestMapping("jwt")
 @Slf4j
 public class AuthController {
 
