@@ -1,18 +1,23 @@
 package com.skycloud.auth.client.interceptor;
 
+import com.skycloud.auth.client.annotation.IgnoreClientToken;
+import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.auth.client.client.AuthClient;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
-import com.skycloud.common.base.Result;
-import com.skycloud.auth.client.annotation.IgnoreClientToken;
+import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
+import com.skycloud.common.base.BaseContextHandler;
+import com.skycloud.common.base.Result;
+import com.skycloud.common.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -20,15 +25,14 @@ import java.util.List;
 /**
  * @author sky
  * 拦截controller从request获取access-token,根据id获取serviceName与当前项目比对
- *
  **/
 @Slf4j
 @Configuration
-public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
+public class UserTokenInterceptor extends HandlerInterceptorAdapter {
 
     @SuppressWarnings("all")
     @Autowired
-    private ClientConfiguration clientConfiguration;
+    private UserAuthConfiguration userAuthConfiguration;
 
     @Autowired
     @SuppressWarnings("all")
@@ -38,7 +42,6 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
     private String appName;
 
     /**
-     *
      * @param request
      * @param response
      * @param handler
@@ -51,25 +54,23 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
 
-        IgnoreClientToken clazzAnnotation = handlerMethod.getBean().getClass().getAnnotation(IgnoreClientToken.class);
+        IgnoreUserToken clazzAnnotation = handlerMethod.getBean().getClass().getAnnotation(IgnoreUserToken.class);
 
-        IgnoreClientToken methodAnnotation = handlerMethod.getMethodAnnotation(IgnoreClientToken.class);
+        IgnoreUserToken methodAnnotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
 
-        if(methodAnnotation != null || clazzAnnotation != null) {
+        if (methodAnnotation != null || clazzAnnotation != null) {
             return true;
         }
 
-        String header = request.getHeader(clientConfiguration.getClientTokenHeader());
+        String header = request.getHeader(userAuthConfiguration.getUserTokenHeader());
 
-        AuthJwtDTO authJwtDTO = JwtUtil.unsign(header, AuthJwtDTO.class);
+        UserDTO userDTO = JwtUtil.unsign(header, UserDTO.class);
 
-        if(authJwtDTO != null) {
-
-            Result<List<AuthClientDTO>> result = authClient.getAllowClient(authJwtDTO.getId() + "");
-
-            if(result !=null && result.getData() != null) {
-                flag = result.getData().parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent();
-            }
+        if (userDTO != null) {
+            BaseContextHandler.setToken(header);
+            BaseContextHandler.setName(userDTO.getLoginName());
+//            BaseContextHandler.setUserID(userDTO.getId());
+            flag = true;
         }
         return flag;
     }

@@ -3,7 +3,7 @@ package com.skycloud.auth.client.feign;
 import com.skycloud.auth.client.client.AuthClient;
 import com.skycloud.common.base.Result;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
-import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
+import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class AuthFeignInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
         log.info("================>>:{} auth feign interceptor apply begin ");
-        IgnoreAuthClientURL ignoreAuthClientURL = AuthFeignContext.getIgnoreAuthClientURL();
+        IgnoreClientToken ignoreAuthClientURL = AuthFeignContext.getIgnoreAuthClientURL();
         if(ignoreAuthClientURL != null) {
             log.info("auth feign interceptor ignore url:{}",requestTemplate.method());
             return;

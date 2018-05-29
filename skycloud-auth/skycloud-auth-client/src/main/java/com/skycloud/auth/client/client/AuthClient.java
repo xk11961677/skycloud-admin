@@ -2,7 +2,7 @@ package com.skycloud.auth.client.client;
 
 import com.skycloud.common.base.Result;
 import com.skycloud.common.client.AbstractClientFallback;
-import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
+import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public interface AuthClient {
      */
     @RequestMapping("/client/token")
     @ResponseBody
-    @IgnoreAuthClientURL
+    @IgnoreClientToken
     Result<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 
     /**
@@ -33,7 +33,7 @@ public interface AuthClient {
      */
     @RequestMapping("/client/myClient")
     @ResponseBody
-    @IgnoreAuthClientURL
+    @IgnoreClientToken
     Result<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
 
     /**
@@ -44,7 +44,7 @@ public interface AuthClient {
      */
     @RequestMapping("/jwt/token")
     @ResponseBody
-    @IgnoreAuthClientURL
+    @IgnoreClientToken
     Result<String> login(@RequestParam("username") String username ,@RequestParam("password") String password);
 
     /**
@@ -53,7 +53,7 @@ public interface AuthClient {
      */
     @RequestMapping("/jwt/verify")
     @ResponseBody
-    @IgnoreAuthClientURL
+    @IgnoreClientToken
     Result<Boolean> verify();
 
 

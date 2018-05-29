@@ -16,8 +16,8 @@
  */
 package com.skycloud.auth.client.feign;
 
-import com.skycloud.auth.client.annotation.IgnoreAuthClientURL;
-import com.skycloud.auth.client.annotation.IgnoreAuthTokenURL;
+import com.skycloud.auth.client.annotation.IgnoreClientToken;
+import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import feign.InvocationHandlerFactory.MethodHandler;
 import feign.Target;
 
@@ -38,9 +38,9 @@ public class AuthFeignHandler implements InvocationHandler {
         if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         } else {
-            final IgnoreAuthClientURL ignoreAuthClientURL = method.getAnnotation(IgnoreAuthClientURL.class);
+            final IgnoreClientToken ignoreAuthClientURL = method.getAnnotation(IgnoreClientToken.class);
 
-            final IgnoreAuthTokenURL ignoreAuthTokenURL = method.getAnnotation(IgnoreAuthTokenURL.class);
+            final IgnoreUserToken ignoreAuthTokenURL = method.getAnnotation(IgnoreUserToken.class);
 
             if (Objects.isNull(ignoreAuthClientURL)) {
                 return this.handlers.get(method).invoke(args);
