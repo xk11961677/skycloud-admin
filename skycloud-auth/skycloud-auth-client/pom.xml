@@ -81,6 +81,11 @@
             <artifactId>skycloud-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+
 
     </dependencies>
 

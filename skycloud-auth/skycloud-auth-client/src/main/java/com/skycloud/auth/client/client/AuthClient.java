@@ -40,7 +40,6 @@ public interface AuthClient {
      * @return
      */
     @RequestMapping("/jwt/token")
-    @IgnoreClientToken
     @ResponseBody Result<String> login(@RequestParam("username") String username ,@RequestParam("password") String password);
 
     /**
@@ -48,7 +47,6 @@ public interface AuthClient {
      * @return
      */
     @RequestMapping("/jwt/verify")
-    @IgnoreClientToken
     @ResponseBody Result<Boolean> verify();
 
 

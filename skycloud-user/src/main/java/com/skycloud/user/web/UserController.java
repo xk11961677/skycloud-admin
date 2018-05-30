@@ -44,6 +44,11 @@ public class UserController {
         UserEntity userEntity = new UserEntity();
         userEntity.setName(username);
         userEntity.setPassword(password);
+        /*try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         UserEntity user = (UserEntity) userService.getOne(userEntity);
         if (user != null) {
             userDTO = new UserDTO();
