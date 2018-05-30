@@ -5,11 +5,11 @@ spring:
   application:
     name: geteway
 
-#  cloud:
-#      config:
-#        uri: ${config_service_uri:http://59.110.63.236:8888/config}
-#        name: geteway
-#        profile: ${config_profile:default}
+  cloud:
+      config:
+        uri: ${config_service_uri:http://59.110.63.236:8888/config}
+        name: geteway
+        profile: ${config_profile:default}
 
 
 zuul:
@@ -47,7 +47,7 @@ zuul:
 
 gate:
   ignore:
-    startWith: /static,/auth/jwt,/user/user
+    startWith: /static,/auth/jwt
 
 
 auth:

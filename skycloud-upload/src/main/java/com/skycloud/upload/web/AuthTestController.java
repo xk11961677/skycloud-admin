@@ -1,14 +1,15 @@
 package com.skycloud.upload.web;
 
-import com.skycloud.api.client.upload.UploadApi;
 import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
+import com.skycloud.common.base.BaseContextHandler;
 import com.skycloud.common.base.Result;
 import com.skycloud.upload.configuration.OssConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.annotation.Resource;
 
 /**
@@ -16,27 +17,11 @@ import javax.annotation.Resource;
  **/
 @Controller
 @RequestMapping("authTest")
+@Slf4j
 public class AuthTestController {
 
     @Resource
     private UserApi userApi;
-
-    @Resource
-    private OssConfiguration oc;
-
-    /**
-     *
-     * @param testDTO
-     * @return
-     */
-    @RequestMapping("test")
-    @ResponseBody
-    public Result<UploadApi.TestDTO> test(@RequestBody UploadApi.TestDTO testDTO) {
-        System.out.println("===========>>:{}"+testDTO.getName());
-        UploadApi.TestDTO dto = new UploadApi.TestDTO();
-        dto.setName("result name 123");
-        return Result.getSuccessResult(dto);
-    }
 
     /**
      * 服务之间鉴权
@@ -45,7 +30,8 @@ public class AuthTestController {
     @RequestMapping("authTest")
     @ResponseBody
     public Result<UserDTO> authTest() {
-        oc.getAliyunAccessKeyId();
+        String token = BaseContextHandler.getToken();
+        log.info("login success "+token);
         Result<UserDTO> user = userApi.getUser("admin", "admin");
         return user;
     }

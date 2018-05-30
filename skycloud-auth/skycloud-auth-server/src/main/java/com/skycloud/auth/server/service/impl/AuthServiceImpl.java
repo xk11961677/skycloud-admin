@@ -13,7 +13,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(UserDTO userDTO) {
-        String token = JwtUtil.sign(userDTO, 3600);
+        String token = JwtUtil.sign(userDTO, 3600000);
         return token;
     }
 

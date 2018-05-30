@@ -43,7 +43,7 @@ public class UserTokenInterceptor extends HandlerInterceptorAdapter {
      * @throws Exception
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("==========>>:{}preHandle");
+        log.info("interceptor user token begin ");
         boolean flag = false;
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -52,20 +52,24 @@ public class UserTokenInterceptor extends HandlerInterceptorAdapter {
 
         IgnoreUserToken methodAnnotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
 
-        if (methodAnnotation != null || clazzAnnotation != null) {
-            return true;
-        }
-
         String header = request.getHeader(userAuthConfiguration.getUserTokenHeader());
 
         UserDTO userDTO = JwtUtil.unsign(header, UserDTO.class);
 
         if (userDTO != null) {
             BaseContextHandler.setToken(header);
-            BaseContextHandler.setName(userDTO.getName());
-//            BaseContextHandler.setUserID(userDTO.getId());
+            BaseContextHandler.setName(userDTO.getNickName());
+            BaseContextHandler.setUserID(userDTO.getId()+"");
+            BaseContextHandler.setUsername(userDTO.getName());
             flag = true;
         }
+
+        if (methodAnnotation != null || clazzAnnotation != null) {
+            flag = true;
+        }
+
+
+        log.info("interceptor user token end ");
         return flag;
     }
 }

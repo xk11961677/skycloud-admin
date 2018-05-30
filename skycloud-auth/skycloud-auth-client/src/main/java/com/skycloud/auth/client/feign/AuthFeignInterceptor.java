@@ -1,6 +1,9 @@
 package com.skycloud.auth.client.feign;
 
+import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.auth.client.client.AuthClient;
+import com.skycloud.auth.client.configuration.UserAuthConfiguration;
+import com.skycloud.common.base.BaseContextHandler;
 import com.skycloud.common.base.Result;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
@@ -10,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
+
 /**
  * @author sky
  * @description
@@ -18,21 +23,33 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AuthFeignInterceptor implements RequestInterceptor {
 
-    @Autowired
-    @SuppressWarnings("all")
+    @Resource
     private AuthClient authClient;
 
-    @SuppressWarnings("all")
-    @Autowired
+    @Resource
     private ClientConfiguration clientConfiguration;
+
+    @Resource
+    private UserAuthConfiguration userAuthConfiguration;
 
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
         log.info(" feign interceptor apply begin ");
+
+        IgnoreUserToken ignoreUserToken = AuthFeignContext.getIgnoreUserToken();
+        if(ignoreUserToken != null) {
+            AuthFeignContext.removeIgnoreUserToken();
+        }else {
+            String token = BaseContextHandler.getToken();
+            requestTemplate.header(userAuthConfiguration.getUserTokenHeader(), token);
+            log.info(" feign interceptor ignore user url:{}",requestTemplate.url());
+        }
+
         IgnoreClientToken ignoreClientToken = AuthFeignContext.getIgnoreClientToken();
         if(ignoreClientToken != null) {
-            log.info("auth feign interceptor ignore url:{}",requestTemplate.method());
+            AuthFeignContext.removeIgnoreClientToken();
+            log.info(" feign interceptor ignore client url:{}",requestTemplate.url());
             return;
         }
 

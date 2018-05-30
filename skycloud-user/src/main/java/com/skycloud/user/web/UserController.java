@@ -1,9 +1,12 @@
 package com.skycloud.user.web;
 
 import com.skycloud.api.dto.UserDTO;
+import com.skycloud.auth.client.annotation.IgnoreUserToken;
+import com.skycloud.common.base.BaseContextHandler;
 import com.skycloud.common.base.Result;
 import com.skycloud.user.entity.UserEntity;
 import com.skycloud.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +20,8 @@ import javax.annotation.Resource;
  **/
 @RestController
 @RequestMapping("user")
+@Slf4j
+@IgnoreUserToken
 public class UserController {
 
     @Resource
@@ -32,6 +37,8 @@ public class UserController {
     @RequestMapping("getUser")
     @ResponseBody
     public Result<UserDTO> getUser(String username, String password) {
+        String token = BaseContextHandler.getToken();
+        log.info("login success "+token);
         Result<UserDTO> result;
         UserDTO userDTO = null;
         UserEntity userEntity = new UserEntity();

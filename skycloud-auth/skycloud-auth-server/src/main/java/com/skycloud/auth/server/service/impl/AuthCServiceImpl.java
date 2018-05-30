@@ -1,5 +1,6 @@
 package com.skycloud.auth.server.service.impl;
 
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.server.common.exception.ClientInvalidException;
 import com.skycloud.auth.server.entity.AuthClientEntity;
 import com.skycloud.auth.server.service.AuthCService;
@@ -39,7 +40,7 @@ public class AuthCServiceImpl implements AuthCService {
         authJwtDTO.setCode(client.getCode());
         authJwtDTO.setName(client.getName());
         authJwtDTO.setId(client.getId());
-        String token = JwtUtil.sign(authJwtDTO, 3600);
+        String token = JwtUtil.sign(authJwtDTO, 3600000);
         return token;
     }
 
@@ -98,4 +99,5 @@ public class AuthCServiceImpl implements AuthCService {
         client = list.get(0);
         return client;
     }
+
 }

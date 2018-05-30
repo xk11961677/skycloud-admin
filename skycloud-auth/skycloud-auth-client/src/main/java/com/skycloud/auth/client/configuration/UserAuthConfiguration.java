@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @NoArgsConstructor
 public class UserAuthConfiguration {
 
-    @Value("${auth.user.token-header:}")
+    @Value("${auth.user.token-header:null}")
     private String userTokenHeader;
 
-    @Value("${auth.user.expire:}")
+    @Value("${auth.user.expire:null}")
     private long expire;
 
 }

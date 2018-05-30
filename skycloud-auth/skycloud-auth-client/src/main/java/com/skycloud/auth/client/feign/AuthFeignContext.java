@@ -26,6 +26,10 @@ public class AuthFeignContext {
         return instance.threadLocal.get();
     }
 
+    public static void removeIgnoreClientToken() {
+        instance.threadLocal.remove();
+    }
+
     public static void setIgnoreClientToken(IgnoreClientToken ignoreClientToken) {
         instance.threadLocal.set(ignoreClientToken);
     }
@@ -38,5 +42,8 @@ public class AuthFeignContext {
         instance.tokenLocal.set(ignoreUserToken);
     }
 
+    public static void removeIgnoreUserToken() {
+        instance.tokenLocal.remove();
+    }
 
 }
