@@ -46,7 +46,7 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
      * @throws Exception
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("==========>>:{}preHandle");
+        log.info(" interceptor begin ");
         boolean flag = false;
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -71,6 +71,7 @@ public class ClientTokenInterceptor extends HandlerInterceptorAdapter {
                 flag = result.getData().parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent();
             }
         }
+        log.info(" interceptor end "+ flag);
         return flag;
     }
 }

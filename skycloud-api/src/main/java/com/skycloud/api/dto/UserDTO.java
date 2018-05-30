@@ -15,28 +15,30 @@ public class UserDTO implements Serializable {
      */
     private Integer id;
     /**
-     *昵称
      */
-    private String userName;
+    private String name;
     /**
      *用户编码
      */
-    private String userCode;
+    private String code;
     /**
-     *登录名称
-     */
-    private String password;
-    /**
-     *登录密码
      */
     private String mobile;
     /**
-     *真实姓名
+     *登录密码
      */
-    private String realName;
+    private String password;
     /**
      *状态
      */
     private Integer status;
+    /**
+     *
+     */
+    private String nickName;
+    /**
+     *真实姓名
+     */
+    private String realName;
 
 }

@@ -1,16 +1,11 @@
 package com.skycloud.auth.client.interceptor;
 
-import com.skycloud.auth.client.annotation.IgnoreClientToken;
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.auth.client.client.AuthClient;
-import com.skycloud.auth.client.configuration.ClientConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
-import com.skycloud.auth.common.dto.AuthClientDTO;
-import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.base.Result;
-import com.skycloud.common.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +15,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author sky
@@ -68,7 +62,7 @@ public class UserTokenInterceptor extends HandlerInterceptorAdapter {
 
         if (userDTO != null) {
             BaseContextHandler.setToken(header);
-            BaseContextHandler.setName(userDTO.getLoginName());
+            BaseContextHandler.setName(userDTO.getName());
 //            BaseContextHandler.setUserID(userDTO.getId());
             flag = true;
         }

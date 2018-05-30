@@ -10,15 +10,15 @@ import org.springframework.context.annotation.Configuration;
 @NoArgsConstructor
 public class ClientConfiguration {
 
-    @Value("${auth.client.token-header:}")
+    @Value("${auth.client.token-header:null}")
     private String clientTokenHeader;
 
-    @Value("${auth.client.id:}")
+    @Value("${auth.client.id:null}")
     private String clientId;
 
-    @Value("${auth.client.secret:}")
+    @Value("${auth.client.secret:null}")
     private String secret;
 
-    @Value("${auth.client.expire:}")
+    @Value("${auth.client.expire:null}")
     private long expire;
 }

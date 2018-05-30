@@ -35,7 +35,7 @@ public class UserController {
         Result<UserDTO> result;
         UserDTO userDTO = null;
         UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(username);
+        userEntity.setName(username);
         userEntity.setPassword(password);
         UserEntity user = (UserEntity) userService.getOne(userEntity);
         if (user != null) {

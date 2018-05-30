@@ -38,15 +38,15 @@ public class AuthFeignHandler implements InvocationHandler {
         if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         } else {
-            final IgnoreClientToken ignoreAuthClientURL = method.getAnnotation(IgnoreClientToken.class);
+            final IgnoreClientToken ignoreClientToken = method.getAnnotation(IgnoreClientToken.class);
 
-            final IgnoreUserToken ignoreAuthTokenURL = method.getAnnotation(IgnoreUserToken.class);
+            final IgnoreUserToken ignoreUserToken = method.getAnnotation(IgnoreUserToken.class);
 
-            if (Objects.isNull(ignoreAuthClientURL)) {
+            if (Objects.isNull(ignoreClientToken)) {
                 return this.handlers.get(method).invoke(args);
             } else {
-                AuthFeignContext.setIgnoreAuthClientURL(ignoreAuthClientURL);
-                AuthFeignContext.setIgnoreAuthTokenURL(ignoreAuthTokenURL);
+                AuthFeignContext.setIgnoreClientToken(ignoreClientToken);
+                AuthFeignContext.setIgnoreUserToken(ignoreUserToken);
                 return this.handlers.get(method).invoke(args);
             }
         }

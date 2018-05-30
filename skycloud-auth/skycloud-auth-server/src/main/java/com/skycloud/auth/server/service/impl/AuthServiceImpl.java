@@ -1,6 +1,6 @@
 package com.skycloud.auth.server.service.impl;
 
-import com.skycloud.common.dto.UserDTO;
+import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.auth.server.service.AuthService;
 import org.springframework.stereotype.Service;

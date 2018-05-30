@@ -13,39 +13,37 @@ import lombok.Data;
 @Data
 public class UserEntity extends BasicEntity {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 *
 	 */
 	private Integer id;
 	/**
-	 *昵称
 	 */
-	private String nickName;
+	private String name;
 	/**
 	 *用户编码
 	 */
-	private String userCode;
+	private String code;
 	/**
-	 *登录名称
 	 */
-	private String loginName;
+	private String mobile;
 	/**
 	 *登录密码
 	 */
-	private String loginPassword;
-	/**
-	 *真实姓名
-	 */
-	private String realName;
+	private String password;
 	/**
 	 *状态
 	 */
 	private Integer status;
 	/**
-	 *头像
+	 *
 	 */
-	private String photo;
+	private String nickName;
+	/**
+	 *真实姓名
+	 */
+	private String realName;
 	
 
 	/**

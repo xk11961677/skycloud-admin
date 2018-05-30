@@ -22,20 +22,20 @@ public class AuthFeignContext {
     }
 
 
-    public static IgnoreClientToken getIgnoreAuthClientURL() {
+    public static IgnoreClientToken getIgnoreClientToken() {
         return instance.threadLocal.get();
     }
 
-    public static void setIgnoreAuthClientURL(IgnoreClientToken ignoreAuthClientURL) {
-        instance.threadLocal.set(ignoreAuthClientURL);
+    public static void setIgnoreClientToken(IgnoreClientToken ignoreClientToken) {
+        instance.threadLocal.set(ignoreClientToken);
     }
 
-    public static IgnoreUserToken getIgnoreAuthTokenURL() {
+    public static IgnoreUserToken getIgnoreUserToken() {
         return instance.tokenLocal.get();
     }
 
-    public static void setIgnoreAuthTokenURL(IgnoreUserToken ignoreAuthTokenURL) {
-        instance.tokenLocal.set(ignoreAuthTokenURL);
+    public static void setIgnoreUserToken(IgnoreUserToken ignoreUserToken) {
+        instance.tokenLocal.set(ignoreUserToken);
     }
 
 

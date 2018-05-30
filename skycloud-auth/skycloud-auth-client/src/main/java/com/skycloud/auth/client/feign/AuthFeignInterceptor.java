@@ -29,20 +29,23 @@ public class AuthFeignInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        log.info("================>>:{} auth feign interceptor apply begin ");
-        IgnoreClientToken ignoreAuthClientURL = AuthFeignContext.getIgnoreAuthClientURL();
-        if(ignoreAuthClientURL != null) {
+        log.info(" feign interceptor apply begin ");
+        IgnoreClientToken ignoreClientToken = AuthFeignContext.getIgnoreClientToken();
+        if(ignoreClientToken != null) {
             log.info("auth feign interceptor ignore url:{}",requestTemplate.method());
             return;
         }
+
         String clientId = clientConfiguration.getClientId();
 
         String secret = clientConfiguration.getSecret();
 
         Result<String> accessToken = authClient.getAccessToken(clientId, secret);
 
+        log.info(" feign interceptor apply access token "+accessToken);
+
         requestTemplate.header(clientConfiguration.getClientTokenHeader(), accessToken.getData());
 
-        log.info("================>>:{} auth feign interceptor apply end ");
+        log.info(" feign interceptor apply end ");
     }
 }
