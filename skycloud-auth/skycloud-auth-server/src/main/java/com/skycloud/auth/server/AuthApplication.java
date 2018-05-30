@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringCloudApplication
 @EnableEurekaClient
+@EnableAuthClient
 public class AuthApplication {
 
 
