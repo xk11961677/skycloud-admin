@@ -7,7 +7,7 @@ spring:
 
   cloud:
     config:
-      uri: ${config_service_uri:http://59.110.63.236:8888/config}
+      uri: ${config_service_uri:http://192.168.43.217:8888/config}
       name: auth
       profile: ${config_profile:default}
 
@@ -35,3 +35,10 @@ spring:
             time-between-eviction-runs-millis: 30000
             min-evictable-idle-time-millis: 30000
             max-evictable-idle-time-millis: 30000
+
+
+auth:
+  service-id: auth
+  client:
+    id: auth
+    secret: 123456

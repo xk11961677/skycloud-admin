@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class FeignOkHttpConfiguration {
 
 	@Resource
-	OkHttpTokenInterceptor okHttpLoggingInterceptor;
+	private OkHttpTokenInterceptor okHttpLoggingInterceptor;
 
 	private int feignOkHttpReadTimeout = 60;
 	private int feignConnectTimeout = 60;

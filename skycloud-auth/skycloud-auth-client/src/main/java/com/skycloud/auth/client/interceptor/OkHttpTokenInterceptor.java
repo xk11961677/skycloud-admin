@@ -1,10 +1,9 @@
 package com.skycloud.auth.client.interceptor;
 
-import com.skycloud.auth.client.client.AuthClient;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
+import com.skycloud.auth.client.util.ServiceAuthUtil;
 import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.base.Result;
 import com.skycloud.common.constants.CommonConstants;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;
@@ -12,11 +11,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Objects;
-
-import static java.util.Optional.ofNullable;
 
 
 /**
@@ -27,7 +25,7 @@ import static java.util.Optional.ofNullable;
 public class OkHttpTokenInterceptor implements Interceptor {
 
     @Resource
-    private AuthClient authClient;
+    private ServiceAuthUtil serviceAuthUtil;
 
     @Resource
     private ClientConfiguration clientConfiguration;
@@ -45,12 +43,10 @@ public class OkHttpTokenInterceptor implements Interceptor {
                     .header(userAuthConfiguration.getUserTokenHeader(), BaseContextHandler.getToken())
                     .build();
         } else {
-            Result<String> token = authClient.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
-            String data = ofNullable(token).orElse(new Result<>()).getData();
             newRequest = chain.request()
                     .newBuilder()
                     .header(userAuthConfiguration.getUserTokenHeader(), BaseContextHandler.getToken())
-                    .header(clientConfiguration.getClientTokenHeader(), data)
+                    .header(clientConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
                     .build();
         }
         Response response = chain.proceed(newRequest);
@@ -58,12 +54,10 @@ public class OkHttpTokenInterceptor implements Interceptor {
             if (response.body().string().contains(String.valueOf(CommonConstants.EX_CLIENT_INVALID_CODE))) {
                 log.info("Client Token Expire,Retry to request...");
 //                authClient.refreshClientToken();
-                Result<String> token = authClient.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
-                String data = ofNullable(token).orElse(new Result<>()).getData();
                 newRequest = chain.request()
                         .newBuilder()
                         .header(userAuthConfiguration.getUserTokenHeader(), BaseContextHandler.getToken())
-                        .header(clientConfiguration.getClientTokenHeader(), data)
+                        .header(clientConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
                         .build();
                 response = chain.proceed(newRequest);
             }

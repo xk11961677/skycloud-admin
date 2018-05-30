@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
-
-@FeignClient(name = "${auth.serviceId}",configuration  = {},fallback = AuthClient.AuthFeignFallback.class)
+@FeignClient(name = "${auth.serviceId}",configuration= {}, fallback = AuthClient.AuthFeignFallback.class)
 public interface AuthClient {
 
     /**
@@ -57,7 +56,7 @@ public interface AuthClient {
 
         @Override
         public Result getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {
-            return new Result<>();
+            return Result.getSuccessResult();
         }
 
         @Override

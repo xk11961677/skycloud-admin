@@ -7,6 +7,7 @@ import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.client.AuthClient;
 import com.skycloud.auth.client.configuration.ClientConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
+import com.skycloud.auth.client.util.ServiceAuthUtil;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.common.base.BaseContextHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ public class AdminAccessFilter extends ZuulFilter {
 
     @Resource
     @Lazy
-    private AuthClient authClient;
+    private ServiceAuthUtil serviceAuthUtil;
 
     @Resource
     @Lazy
@@ -80,7 +81,7 @@ public class AdminAccessFilter extends ZuulFilter {
         //TODO 判断用户是否由此资源操作权限
 
         // 申请客户端密钥头
-        String accessToken = authClient.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret()).getData();
+        String accessToken = serviceAuthUtil.acquireToken();
         ctx.addZuulRequestHeader(clientConfiguration.getClientTokenHeader(), accessToken);
         return null;
     }
