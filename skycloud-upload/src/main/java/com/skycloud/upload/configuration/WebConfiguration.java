@@ -2,6 +2,7 @@ package com.skycloud.upload.configuration;
 
 import com.skycloud.auth.client.interceptor.ServiceAuthRestInterceptor;
 import com.skycloud.auth.client.interceptor.UserAuthRestInterceptor;
+import com.skycloud.common.handler.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,10 +14,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
-   @Bean
-   public ServiceAuthRestInterceptor serviceAuthRestInterceptor() {
-       return new ServiceAuthRestInterceptor();
-   }
+    @Bean
+    GlobalExceptionHandler getGlobalExceptionHandler() {
+        return new GlobalExceptionHandler();
+    }
+
+    @Bean
+    public ServiceAuthRestInterceptor serviceAuthRestInterceptor() {
+        return new ServiceAuthRestInterceptor();
+    }
 
     @Bean
     public UserAuthRestInterceptor userAuthRestInterceptor() {
@@ -28,8 +34,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         registry.addInterceptor(userAuthRestInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
-
-
 
 
 }
