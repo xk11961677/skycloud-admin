@@ -4,7 +4,6 @@ import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.common.base.BaseContextHandler;
 import com.skycloud.common.base.Result;
-import com.skycloud.upload.configuration.OssConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +15,9 @@ import javax.annotation.Resource;
  * @author sky
  **/
 @Controller
-@RequestMapping("authTest")
+@RequestMapping("test")
 @Slf4j
-public class AuthTestController {
+public class TestController {
 
     @Resource
     private UserApi userApi;

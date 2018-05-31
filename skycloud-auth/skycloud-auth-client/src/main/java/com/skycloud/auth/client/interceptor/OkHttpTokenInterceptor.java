@@ -1,6 +1,6 @@
 package com.skycloud.auth.client.interceptor;
 
-import com.skycloud.auth.client.configuration.ClientConfiguration;
+import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.client.util.ServiceAuthUtil;
 import com.skycloud.common.base.BaseContextHandler;
@@ -28,7 +28,7 @@ public class OkHttpTokenInterceptor implements Interceptor {
     private ServiceAuthUtil serviceAuthUtil;
 
     @Resource
-    private ClientConfiguration clientConfiguration;
+    private ClientAuthConfiguration clientAuthConfiguration;
 
     @Resource
     private UserAuthConfiguration userAuthConfiguration;
@@ -46,7 +46,7 @@ public class OkHttpTokenInterceptor implements Interceptor {
             newRequest = chain.request()
                     .newBuilder()
                     .header(userAuthConfiguration.getUserTokenHeader(), BaseContextHandler.getToken())
-                    .header(clientConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
+                    .header(clientAuthConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
                     .build();
         }
         Response response = chain.proceed(newRequest);
@@ -57,7 +57,7 @@ public class OkHttpTokenInterceptor implements Interceptor {
                 newRequest = chain.request()
                         .newBuilder()
                         .header(userAuthConfiguration.getUserTokenHeader(), BaseContextHandler.getToken())
-                        .header(clientConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
+                        .header(clientAuthConfiguration.getClientTokenHeader(), serviceAuthUtil.acquireToken())
                         .build();
                 response = chain.proceed(newRequest);
             }

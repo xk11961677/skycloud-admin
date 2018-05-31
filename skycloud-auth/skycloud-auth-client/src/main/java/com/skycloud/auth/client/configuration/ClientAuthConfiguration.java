@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 @Data
 @NoArgsConstructor
-public class ClientConfiguration {
+public class ClientAuthConfiguration {
 
     @Value("${auth.client.token-header:null}")
     private String clientTokenHeader;

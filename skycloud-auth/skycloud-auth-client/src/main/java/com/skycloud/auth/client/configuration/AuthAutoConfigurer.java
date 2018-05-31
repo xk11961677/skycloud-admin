@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.skycloud.auth.client")
+@ComponentScan(basePackageClasses = EnableAuthClient.class)
 @EnableFeignClients(basePackageClasses = EnableAuthClient.class)
 @EnableCircuitBreaker
 public class AuthAutoConfigurer {

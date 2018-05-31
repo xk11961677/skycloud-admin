@@ -1,8 +1,9 @@
 package com.skycloud.auth.client.util;
 
-import com.skycloud.auth.client.client.AuthClient;
-import com.skycloud.auth.client.configuration.ClientConfiguration;
+import com.skycloud.auth.client.client.AuthApi;
+import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
 import com.skycloud.common.base.Result;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -20,14 +21,15 @@ import static java.util.Optional.ofNullable;
 public class ServiceAuthUtil {
 
     @Resource
-    private AuthClient authClient;
+    @Lazy
+    private AuthApi authApi;
 
     @Resource
-    private ClientConfiguration clientConfiguration;
+    private ClientAuthConfiguration clientConfiguration;
 
 
     public String acquireToken() {
-        Result<java.lang.String> token = authClient.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
+        Result<java.lang.String> token = authApi.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
         String data = Objects.toString(ofNullable(token).orElse(new Result<>()).getData());
         return data;
     }

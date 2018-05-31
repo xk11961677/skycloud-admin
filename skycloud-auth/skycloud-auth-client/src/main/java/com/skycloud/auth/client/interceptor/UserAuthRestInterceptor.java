@@ -2,10 +2,11 @@ package com.skycloud.auth.client.interceptor;
 
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.annotation.IgnoreUserToken;
-import com.skycloud.auth.client.client.AuthClient;
+import com.skycloud.auth.client.client.AuthApi;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.common.base.BaseContextHandler;
+import com.skycloud.common.exception.auth.UserTokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @Slf4j
 @Configuration
-public class UserTokenInterceptor extends HandlerInterceptorAdapter {
+public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
 
     @SuppressWarnings("all")
     @Autowired
@@ -30,7 +31,7 @@ public class UserTokenInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     @SuppressWarnings("all")
-    private AuthClient authClient;
+    private AuthApi authClient;
 
     @Value(value = "${spring.application.name}")
     private String appName;
@@ -67,9 +68,10 @@ public class UserTokenInterceptor extends HandlerInterceptorAdapter {
         if (methodAnnotation != null || clazzAnnotation != null) {
             flag = true;
         }
+        if(flag) {
+            return super.preHandle(request,response,handler);
+        }
+        throw new UserTokenException("User is Forbidden!");
 
-
-        log.info("interceptor user token end ");
-        return flag;
     }
 }

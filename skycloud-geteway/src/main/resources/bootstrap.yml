@@ -7,7 +7,7 @@ spring:
 
   cloud:
       config:
-        uri: ${config_service_uri:http://192.168.43.217:8888/config}
+        uri: ${config_service_uri:http://59.110.63.236:8888/config}
         name: geteway
         profile: ${config_profile:default}
 
@@ -48,6 +48,14 @@ zuul:
 gate:
   ignore:
     startWith: /static,/auth/jwt
+
+
+#负载均衡
+ribbon:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 
 
 auth:

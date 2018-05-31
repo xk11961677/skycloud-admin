@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
-@FeignClient(name = "${auth.serviceId}",configuration= {}, fallback = AuthClient.AuthFeignFallback.class)
-public interface AuthClient {
+@FeignClient(name = "${auth.service-id}",configuration= {}, fallback = AuthApi.AuthFeignFallback.class)
+public interface AuthApi {
 
     /**
      * 获取access-token
@@ -52,7 +52,7 @@ public interface AuthClient {
 
 
     @Component
-    class AuthFeignFallback implements AuthClient {
+    class AuthFeignFallback implements AuthApi {
 
         @Override
         public Result getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {
@@ -61,17 +61,17 @@ public interface AuthClient {
 
         @Override
         public Result<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId) {
-            return new Result<>();
+            return Result.getSuccessResult();
         }
 
         @Override
         public Result<String> login(@RequestParam("username") String username ,@RequestParam("password") String password) {
-            return new Result<>();
+            return Result.getSuccessResult();
         }
 
         @Override
         public Result<Boolean> verify() {
-            return new Result<>();
+            return Result.getSuccessResult();
         }
     }
 }

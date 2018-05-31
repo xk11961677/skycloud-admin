@@ -2,8 +2,7 @@ package com.skycloud.auth.server.web;
 
 import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
-import com.skycloud.auth.client.configuration.UserAuthConfiguration;
-import com.skycloud.auth.common.utils.JwtUtil;
+import com.skycloud.auth.server.configuration.UserAuthConfiguration;
 import com.skycloud.common.base.Result;
 import com.skycloud.common.enumcode.FailureCodeEnum;
 import com.skycloud.auth.server.service.AuthService;

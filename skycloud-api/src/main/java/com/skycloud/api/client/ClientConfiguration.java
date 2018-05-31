@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
  *	@author sky
  */
 @EnableFeignClients(basePackageClasses=ClientConfiguration.class)
-@ComponentScan
+@ComponentScan(basePackageClasses = ClientConfiguration.class)
 @EnableCircuitBreaker
 public class ClientConfiguration {
 

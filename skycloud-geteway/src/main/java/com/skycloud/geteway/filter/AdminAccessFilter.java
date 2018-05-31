@@ -4,15 +4,13 @@ package com.skycloud.geteway.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.skycloud.api.dto.UserDTO;
-import com.skycloud.auth.client.client.AuthClient;
-import com.skycloud.auth.client.configuration.ClientConfiguration;
+import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.client.util.ServiceAuthUtil;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.common.base.BaseContextHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -37,7 +35,7 @@ public class AdminAccessFilter extends ZuulFilter {
 
     @Resource
     @Lazy
-    private ClientConfiguration clientConfiguration;
+    private ClientAuthConfiguration clientAuthConfiguration;
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
@@ -82,7 +80,7 @@ public class AdminAccessFilter extends ZuulFilter {
 
         // 申请客户端密钥头
         String accessToken = serviceAuthUtil.acquireToken();
-        ctx.addZuulRequestHeader(clientConfiguration.getClientTokenHeader(), accessToken);
+        ctx.addZuulRequestHeader(clientAuthConfiguration.getClientTokenHeader(), accessToken);
         return null;
     }
 
