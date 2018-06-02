@@ -1,7 +1,7 @@
 package com.skycloud.api.client.user;
 
 import com.skycloud.api.dto.UserDTO;
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +17,15 @@ public interface UserApi {
 
     @RequestMapping(value = "/user/getUser",method = RequestMethod.GET)
     @ResponseBody
-    Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password);
+    ResponseData<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password);
 
     @Component
     class UserApiFallback implements UserApi {
 
         @Override
-        public Result<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+        public ResponseData<UserDTO> getUser(@RequestParam("username") String username, @RequestParam("password") String password) {
             System.out.println("===========>>user client fallback:{}");
-            return new Result<>();
+            return new ResponseData<>();
         }
     }
 }

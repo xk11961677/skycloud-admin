@@ -1,6 +1,6 @@
 package com.skycloud.api.client.upload;
 
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import lombok.Data;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public interface UploadApi {
 
 	@RequestMapping(value="/upload/test/test",method=RequestMethod.POST)
 	@ResponseBody
-	Result<TestDTO> send(@RequestBody TestDTO testDTO);
+	ResponseData<TestDTO> send(@RequestBody TestDTO testDTO);
 
 	/**
 	 * 断路器
@@ -29,8 +29,8 @@ public interface UploadApi {
 	class UploadApiFallback  implements UploadApi {
 
 		@Override
-		public Result send(@RequestBody TestDTO testDTO) {
-			return new Result();
+		public ResponseData send(@RequestBody TestDTO testDTO) {
+			return new ResponseData();
 		}
 
 

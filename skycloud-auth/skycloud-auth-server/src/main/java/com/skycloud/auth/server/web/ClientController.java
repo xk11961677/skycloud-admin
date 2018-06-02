@@ -1,6 +1,6 @@
 package com.skycloud.auth.server.web;
 
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import com.skycloud.auth.server.entity.AuthClientEntity;
 import com.skycloud.auth.server.service.AuthCService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class ClientController {
      */
     @RequestMapping("token")
     @ResponseBody
-    public Result<String> getAccessToken(String clientId, String secret) throws Exception{
-        return Result.getSuccessResult(authCService.apply(clientId,secret));
+    public ResponseData<String> getAccessToken(String clientId, String secret) throws Exception{
+        return ResponseData.getSuccessResult(authCService.apply(clientId,secret));
     }
 
     /**
@@ -40,9 +40,9 @@ public class ClientController {
      */
     @RequestMapping("myClient")
     @ResponseBody
-    public Result<List<AuthClientEntity>> getAllowedClient(String clientId) {
+    public ResponseData<List<AuthClientEntity>> getAllowedClient(String clientId) {
         List<AuthClientEntity> rsList = authCService.getAllowedClient(clientId);
-        return Result.getSuccessResult(rsList);
+        return ResponseData.getSuccessResult(rsList);
     }
 
     /*@RequestMapping(value = "/servicePubKey",method = RequestMethod.POST)

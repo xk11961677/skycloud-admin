@@ -3,7 +3,7 @@ package com.skycloud.auth.server.web;
 import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import com.skycloud.common.enumcode.FailureCodeEnum;
 import com.skycloud.auth.server.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -40,19 +40,19 @@ public class AuthController {
      */
     @RequestMapping("token")
     @ResponseBody
-    public Result<String> crtAuthenticationToken(String username , String password) {
+    public ResponseData<String> crtAuthenticationToken(String username , String password) {
 
-        Result<UserDTO> result = userApi.getUser(username, password);
+        ResponseData<UserDTO> result = userApi.getUser(username, password);
 
         UserDTO userDTO  = result.getData();
 
         if(userDTO == null ) {
-            return Result.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"账号或密码错误");
+            return ResponseData.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"账号或密码错误");
         }
 
         String token = authService.login(userDTO);
 
-        return Result.getSuccessResult(token);
+        return ResponseData.getSuccessResult(token);
     }
 
     /**
@@ -61,14 +61,14 @@ public class AuthController {
      */
     @RequestMapping("verify")
     @ResponseBody
-    public Result<Boolean> verify(HttpServletRequest request) {
+    public ResponseData<Boolean> verify(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
 
         String token = request.getHeader(tokenHeader);
 
         boolean validate = authService.validate(token);
 
-        return Result.getSuccessResult(validate);
+        return ResponseData.getSuccessResult(validate);
     }
 
     /**
@@ -78,7 +78,7 @@ public class AuthController {
      */
     @RequestMapping("refresh")
     @ResponseBody
-    public Result<String> refreshAuthenticationToken(HttpServletRequest request) {
+    public ResponseData<String> refreshAuthenticationToken(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
 
         String token = request.getHeader(tokenHeader);
@@ -86,9 +86,9 @@ public class AuthController {
         String refresh = authService.refresh(token);
 
         if(refresh==null) {
-            return Result.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"token过期");
+            return ResponseData.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"token过期");
         }else {
-            return Result.getSuccessResult(refresh);
+            return ResponseData.getSuccessResult(refresh);
         }
     }
 
@@ -99,11 +99,11 @@ public class AuthController {
      */
     @RequestMapping("invlid")
     @ResponseBody
-    public Result<Boolean> invlid(HttpServletRequest request) {
+    public ResponseData<Boolean> invlid(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
         String token = request.getHeader(tokenHeader);
         authService.invalid(token);
-        return Result.getSuccessResult(true);
+        return ResponseData.getSuccessResult(true);
     }
 
 }

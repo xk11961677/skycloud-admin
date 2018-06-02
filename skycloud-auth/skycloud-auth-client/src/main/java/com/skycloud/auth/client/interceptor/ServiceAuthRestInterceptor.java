@@ -2,7 +2,7 @@ package com.skycloud.auth.client.interceptor;
 
 import com.skycloud.auth.client.client.AuthApi;
 import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import com.skycloud.auth.common.dto.AuthJwtDTO;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -65,7 +64,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
         if (authJwtDTO != null) {
 
-            Result<List<AuthClientDTO>> result = authApi.getAllowClient(authJwtDTO.getId() + "");
+            ResponseData<List<AuthClientDTO>> result = authApi.getAllowClient(authJwtDTO.getId() + "");
 
             if (result != null && result.getData() != null && result.getData().parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent()) {
                 return super.preHandle(request, response, handler);

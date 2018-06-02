@@ -4,7 +4,7 @@
 //import com.skycloud.auth.client.client.AuthClient;
 //import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 //import com.skycloud.common.base.BaseContextHandler;
-//import com.skycloud.common.base.Result;
+//import com.skycloud.common.base.ResponseData;
 //import com.skycloud.auth.client.configuration.ClientConfiguration;
 //import com.skycloud.auth.client.annotation.IgnoreClientToken;
 //import feign.RequestInterceptor;
@@ -56,7 +56,7 @@
 //
 //        String secret = clientConfiguration.getSecret();
 //
-//        Result<String> accessToken = authClient.getAccessToken(clientId, secret);
+//        ResponseData<String> accessToken = authClient.getAccessToken(clientId, secret);
 //
 //        log.info(" feign interceptor apply access token "+accessToken);
 //
