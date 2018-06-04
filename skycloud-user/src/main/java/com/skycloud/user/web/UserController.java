@@ -3,7 +3,7 @@ package com.skycloud.user.web;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import com.skycloud.user.entity.UserEntity;
 import com.skycloud.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,10 +36,10 @@ public class UserController {
      */
     @RequestMapping("getUser")
     @ResponseBody
-    public Result<UserDTO> getUser(String username, String password) {
+    public ResponseData<UserDTO> getUser(String username, String password) {
         String token = BaseContextHandler.getToken();
         log.info("login success "+token);
-        Result<UserDTO> result;
+        ResponseData<UserDTO> result;
         UserDTO userDTO = null;
         UserEntity userEntity = new UserEntity();
         userEntity.setName(username);
@@ -49,7 +49,7 @@ public class UserController {
             userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);
         }
-        result = Result.getSuccessResult(userDTO);
+        result = ResponseData.getSuccessResult(userDTO);
         return result;
     }
 

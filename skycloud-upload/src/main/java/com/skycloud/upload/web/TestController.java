@@ -3,7 +3,7 @@ package com.skycloud.upload.web;
 import com.skycloud.api.client.user.UserApi;
 import com.skycloud.api.dto.UserDTO;
 import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.base.Result;
+import com.skycloud.common.base.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +28,10 @@ public class TestController {
      */
     @RequestMapping("authTest")
     @ResponseBody
-    public Result<UserDTO> authTest() {
+    public ResponseData<UserDTO> authTest() {
         String token = BaseContextHandler.getToken();
         log.info("login success "+token);
-        Result<UserDTO> user = userApi.getUser("admin", "admin");
+        ResponseData<UserDTO> user = userApi.getUser("admin", "admin");
         return user;
     }
 }
