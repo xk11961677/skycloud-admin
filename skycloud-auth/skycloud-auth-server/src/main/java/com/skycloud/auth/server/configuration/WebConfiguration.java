@@ -10,8 +10,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @author ace
- * @date 2017/9/8
  */
 @Configuration
 @Primary
