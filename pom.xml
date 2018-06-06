@@ -24,6 +24,7 @@
         <module>skycloud-geteway</module>
         <module>skycloud-manager</module>
         <module>skycloud-api</module>
+        <module>skycloud-generator</module>
     </modules>
 
     <properties>
