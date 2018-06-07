@@ -2,7 +2,6 @@ package com.skycloud.generator;
 
 import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.ShellRunner;
-
 import java.util.List;
 
 /**
