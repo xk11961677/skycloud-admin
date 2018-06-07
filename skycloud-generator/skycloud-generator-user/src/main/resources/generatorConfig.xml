@@ -27,17 +27,17 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.skycloud.provider.model.domain" targetProject="E:\workspace_tx\skycloud-master\skycloud-generator\src\main\java">
+        <javaModelGenerator targetPackage="com.skycloud.provider.model.domain" targetProject="E:\workspace_tx\skycloud-master\skycloud-user\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="rootClass" value="${domain.rootClass}"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="E:\workspace_tx\skycloud-master\skycloud-generator\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="E:\workspace_tx\skycloud-master\skycloud-user\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.skycloud.provider.mapper" targetProject="E:\workspace_tx\skycloud-master\skycloud-generator\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.skycloud.provider.mapper" targetProject="E:\workspace_tx\skycloud-master\skycloud-user\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成哪些表 -->
