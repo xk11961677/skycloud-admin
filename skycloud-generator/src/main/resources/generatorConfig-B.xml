@@ -6,7 +6,6 @@
     <properties resource="config.properties"/>
     <!-- 数据库驱动 -->
         <context id="DB2Tables"  targetRuntime="MyBatis3">
-            <!--<plugin type="org.mybatis.generator.plugZins.SerializablePlugin"></plugin>-->
             <plugin type="com.skycloud.generator.plugin.SerializablePlugin"></plugin>
             <plugin type="com.skycloud.generator.plugin.LombokPlugin"></plugin>
             <plugin type="com.skycloud.generator.plugin.CommentPlugin">

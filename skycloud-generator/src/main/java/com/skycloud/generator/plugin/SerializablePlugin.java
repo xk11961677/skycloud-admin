@@ -39,7 +39,7 @@ public class SerializablePlugin extends PluginAdapter {
     }
 
     protected void makeSerializable(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        topLevelClass.addImportedType(this.serializable);
+//        topLevelClass.addImportedType(this.serializable);
         Field field = new Field();
         field.setFinal(true);
         field.setInitializationString(String.valueOf(Math.abs(UUID.randomUUID().getMostSignificantBits()))+"L");
