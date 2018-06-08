@@ -37,6 +37,7 @@ public class TestController {
     public ResponseData get(){
         AuthClient client = new AuthClient();
         client.setCode("123");
+        client.setId(19L);
         AuthClient authClient = testClientService.selectOne(client);
         return ResponseData.ok(authClient);
     }

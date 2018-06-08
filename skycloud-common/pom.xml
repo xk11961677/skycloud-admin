@@ -64,6 +64,7 @@
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

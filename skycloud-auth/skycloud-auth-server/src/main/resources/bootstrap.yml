@@ -35,6 +35,12 @@ spring:
             time-between-eviction-runs-millis: 30000
             min-evictable-idle-time-millis: 30000
             max-evictable-idle-time-millis: 30000
+            web-stat-filter:
+              exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+            stat-view-servlet:
+              allow:
+              login-username: admin
+              login-password: admin
 
 
 mybatis:
