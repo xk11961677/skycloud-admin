@@ -1,7 +1,7 @@
 package com.skycloud.auth.server.service.impl;
 
 import com.skycloud.auth.server.model.domain.AuthClient;
-import com.skycloud.common.exception.auth.ClientInvalidException;
+import com.skycloud.base.exception.auth.ClientInvalidException;
 import com.skycloud.auth.server.service.AuthCService;
 import com.skycloud.auth.server.service.AuthClientService;
 import com.skycloud.auth.server.service.AuthClientServiceService;
@@ -10,6 +10,7 @@ import com.skycloud.auth.common.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -94,7 +95,7 @@ public class AuthCServiceImpl implements AuthCService {
         client.setCode(clientId);
         client = authClientService.selectOne(client);
 
-        if(client != null && client.getSecret().equals(secret)){
+        if(client != null && !StringUtils.isEmpty(secret) && !client.getSecret().equals(secret)){
             throw new ClientInvalidException("Client not found or Client secret is error!");
         }
         return client;

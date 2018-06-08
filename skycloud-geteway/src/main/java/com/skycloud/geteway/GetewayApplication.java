@@ -6,6 +6,8 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -17,14 +19,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 @EnableZuulProxy
 @EnableAuthClient
+@ComponentScans(value = { @ComponentScan("com.skycloud.user")})
 public class GetewayApplication {
-
-
-    @LoadBalanced
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     /**
      * 入口

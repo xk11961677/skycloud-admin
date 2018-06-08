@@ -1,8 +1,8 @@
 package com.skycloud.auth.client.client;
 
-import com.skycloud.common.base.ResponseData;
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
+import com.skycloud.base.ResponseData;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +21,7 @@ public interface AuthApi {
      */
     @RequestMapping("/client/token")
     @IgnoreClientToken
-    @ResponseBody
-    ResponseData<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
+    @ResponseBody ResponseData<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 
     /**
      * 根据clientId获取所有可访问服务
@@ -31,8 +30,7 @@ public interface AuthApi {
      */
     @RequestMapping("/client/myClient")
     @IgnoreClientToken
-    @ResponseBody
-    ResponseData<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
+    @ResponseBody ResponseData<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
 
     /**
      * 登录获取token
@@ -41,8 +39,7 @@ public interface AuthApi {
      * @return
      */
     @RequestMapping("/jwt/token")
-    @ResponseBody
-    ResponseData<String> login(@RequestParam("username") String username , @RequestParam("password") String password);
+    @ResponseBody ResponseData<String> login(@RequestParam("username") String username , @RequestParam("password") String password);
 
     /**
      * 验证登录获取的token是否有效

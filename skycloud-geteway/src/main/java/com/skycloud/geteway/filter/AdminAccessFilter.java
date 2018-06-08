@@ -3,12 +3,12 @@ package com.skycloud.geteway.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
 import com.skycloud.auth.client.configuration.UserAuthConfiguration;
 import com.skycloud.auth.client.util.ServiceAuthUtil;
 import com.skycloud.auth.common.utils.JwtUtil;
-import com.skycloud.common.base.BaseContextHandler;
+import com.skycloud.base.BaseContextHandler;
+import com.skycloud.user.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,7 +69,7 @@ public class AdminAccessFilter extends ZuulFilter {
         if (isStartWith(requestUri)) {
             return null;
         }
-        UserDTO user = null;
+        UserDto user = null;
         try {
             user = getJWTUser(request, ctx);
         } catch (Exception e) {
@@ -91,14 +91,14 @@ public class AdminAccessFilter extends ZuulFilter {
      * @param ctx
      * @return
      */
-    private UserDTO getJWTUser(HttpServletRequest request, RequestContext ctx) throws Exception {
+    private UserDto getJWTUser(HttpServletRequest request, RequestContext ctx) throws Exception {
         String authToken = request.getHeader(userAuthConfiguration.getUserTokenHeader());
         if (StringUtils.isBlank(authToken)) {
             authToken = request.getParameter("token");
         }
         ctx.addZuulRequestHeader(userAuthConfiguration.getUserTokenHeader(), authToken);
         BaseContextHandler.setToken(authToken);
-        return JwtUtil.unsign(authToken, UserDTO.class);
+        return JwtUtil.unsign(authToken, UserDto.class);
     }
 
     /**

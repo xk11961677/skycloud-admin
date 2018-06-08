@@ -5,7 +5,7 @@ import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.auth.server.configuration.ClientAuthConfiguration;
 import com.skycloud.auth.server.model.domain.AuthClient;
 import com.skycloud.auth.server.service.AuthCService;
-import com.skycloud.common.exception.auth.ClientForbiddenException;
+import com.skycloud.base.exception.auth.ClientForbiddenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

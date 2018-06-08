@@ -1,7 +1,7 @@
 package com.skycloud.auth.server.web;
 
 import com.skycloud.auth.server.model.domain.AuthClient;
-import com.skycloud.common.base.ResponseData;
+import com.skycloud.base.ResponseData;
 import com.skycloud.auth.server.service.AuthCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

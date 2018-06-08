@@ -17,13 +17,11 @@
 
     <modules>
         <module>skycloud-common</module>
-        <module>skycloud-user</module>
-        <module>skycloud-upload</module>
-        <module>skycloud-auth</module>
         <module>skycloud-geteway</module>
-        <module>skycloud-admin</module>
-        <module>skycloud-api</module>
         <module>skycloud-generator</module>
+        <module>skycloud-auth</module>
+        <module>skycloud-provider</module>
+        <module>skycloud-provider-api</module>
     </modules>
 
     <properties>
@@ -37,8 +35,14 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.skycloud</groupId>
-                <artifactId>skycloud-common</artifactId>
+                <groupId>com.skycloud.common</groupId>
+                <artifactId>skycloud-common-core</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.skycloud.common</groupId>
+                <artifactId>skycloud-common-base</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
@@ -55,14 +59,14 @@
             </dependency>
 
             <dependency>
-                <groupId>com.skycloud</groupId>
-                <artifactId>skycloud-api</artifactId>
+                <groupId>com.skycloud.provider.api</groupId>
+                <artifactId>skycloud-provider-user-api</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
-                <groupId>com.skycloud</groupId>
-                <artifactId>skycloud-mybaits</artifactId>
+                <groupId>com.skycloud.provider.api</groupId>
+                <artifactId>skycloud-provider-admin-api</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
@@ -84,6 +88,7 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>1.2.0</version>
             </dependency>
+
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper</artifactId>

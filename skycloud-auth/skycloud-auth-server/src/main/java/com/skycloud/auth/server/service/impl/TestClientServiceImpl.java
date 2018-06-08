@@ -3,8 +3,7 @@ package com.skycloud.auth.server.service.impl;
 import com.skycloud.auth.server.mapper.AuthClientMapper;
 import com.skycloud.auth.server.model.domain.AuthClient;
 import com.skycloud.auth.server.service.TestClientService;
-import com.skycloud.common.base.ResponseData;
-import com.skycloud.common.support.BaseService;
+import com.skycloud.core.support.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

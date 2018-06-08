@@ -8,12 +8,18 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.skycloud</groupId>
+    <groupId>com.skycloud.common</groupId>
     <artifactId>skycloud-common</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>skycloud-common</name>
-    <description>通用工具</description>
-    <packaging>jar</packaging>
+    <description>skycloud-common</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>skycloud-common-base</module>
+        <module>skycloud-common-core</module>
+        <module>skycloud-common-util</module>
+    </modules>
 
     <dependencies>
 
@@ -78,7 +84,6 @@
             <artifactId>spring-tx</artifactId>
             <scope>provided</scope>
         </dependency>
-
 
     </dependencies>
 

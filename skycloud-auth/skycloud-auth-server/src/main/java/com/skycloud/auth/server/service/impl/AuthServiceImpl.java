@@ -1,8 +1,8 @@
 package com.skycloud.auth.server.service.impl;
 
-import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.auth.server.service.AuthService;
+import com.skycloud.user.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     @Override
-    public String login(UserDTO userDTO) {
+    public String login(UserDto userDTO) {
         String token = JwtUtil.sign(userDTO, 3600000);
         return token;
     }
 
     @Override
     public boolean validate(String token) {
-        UserDTO userDTO = JwtUtil.unsign(token, UserDTO.class);
+        UserDto userDTO = JwtUtil.unsign(token, UserDto.class);
         Boolean validate = userDTO==null?true:false;
         return validate;
     }

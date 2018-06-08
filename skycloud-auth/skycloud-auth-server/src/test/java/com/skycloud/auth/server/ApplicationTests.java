@@ -2,7 +2,6 @@ package com.skycloud.auth.server;
 
 import com.skycloud.auth.server.model.domain.AuthClient;
 import com.skycloud.auth.server.service.TestClientService;
-import com.skycloud.common.base.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

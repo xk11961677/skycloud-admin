@@ -1,16 +1,14 @@
 package com.skycloud.auth.server.web;
 
-import com.skycloud.api.client.user.UserApi;
-import com.skycloud.api.dto.UserDTO;
+import com.skycloud.user.dto.UserDto;
+import com.skycloud.user.service.UserRestApi;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
-import com.skycloud.common.base.ResponseData;
-import com.skycloud.common.enumcode.FailureCodeEnum;
+import com.skycloud.base.ResponseData;
 import com.skycloud.auth.server.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthController {
 
     @Resource
-    private UserApi userApi;
+    private UserRestApi userApi;
 
     @Resource
     private AuthService authService;
@@ -42,12 +40,15 @@ public class AuthController {
     @ResponseBody
     public ResponseData<String> crtAuthenticationToken(String username , String password) {
 
-        ResponseData<UserDTO> result = userApi.getUser(username, password);
+        UserDto userDto = new UserDto();
+        userDto.setName(username);
+        userDto.setPassword(password);
+        ResponseData<UserDto> result = userApi.getUser(userDto);
 
-        UserDTO userDTO  = result.getData();
+        UserDto userDTO  = result.getData();
 
         if(userDTO == null ) {
-            return ResponseData.error(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"账号或密码错误");
+            return ResponseData.error("","账号或密码错误");
         }
 
         String token = authService.login(userDTO);
@@ -86,7 +87,7 @@ public class AuthController {
         String refresh = authService.refresh(token);
 
         if(refresh==null) {
-            return ResponseData.error(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"token过期");
+            return ResponseData.error("","token过期");
         }else {
             return ResponseData.ok(refresh);
         }

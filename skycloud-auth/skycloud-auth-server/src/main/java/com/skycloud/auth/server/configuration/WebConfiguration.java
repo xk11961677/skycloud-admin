@@ -2,7 +2,7 @@ package com.skycloud.auth.server.configuration;
 
 import com.skycloud.auth.server.interceptor.ServiceAuthRestInterceptor;
 import com.skycloud.auth.server.interceptor.UserAuthRestInterceptor;
-import com.skycloud.common.handler.GlobalExceptionHandler;
+import com.skycloud.core.handler.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

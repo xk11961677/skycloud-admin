@@ -2,12 +2,12 @@ package com.skycloud.auth.client.interceptor;
 
 import com.skycloud.auth.client.client.AuthApi;
 import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
-import com.skycloud.common.base.ResponseData;
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
-import com.skycloud.common.exception.auth.ClientForbiddenException;
+import com.skycloud.base.ResponseData;
+import com.skycloud.base.exception.auth.ClientForbiddenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

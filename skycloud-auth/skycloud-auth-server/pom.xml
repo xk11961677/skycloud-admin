@@ -14,7 +14,6 @@
     <description>认证服务端</description>
 
     <dependencies>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -95,14 +94,18 @@
         </dependency>
 
         <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>2.2.0</version>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.skycloud</groupId>
-            <artifactId>skycloud-common</artifactId>
+            <groupId>com.skycloud.common</groupId>
+            <artifactId>skycloud-common-base</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.skycloud.common</groupId>
+            <artifactId>skycloud-common-core</artifactId>
         </dependency>
 
         <dependency>
@@ -111,8 +114,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.skycloud</groupId>
-            <artifactId>skycloud-api</artifactId>
+            <groupId>com.skycloud.provider.api</groupId>
+            <artifactId>skycloud-provider-user-api</artifactId>
         </dependency>
 
     </dependencies>

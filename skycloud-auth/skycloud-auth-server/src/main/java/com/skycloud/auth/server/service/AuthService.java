@@ -1,7 +1,7 @@
 package com.skycloud.auth.server.service;
 
 
-import com.skycloud.api.dto.UserDTO;
+import com.skycloud.user.dto.UserDto;
 
 /**
  * @author sky
@@ -13,7 +13,7 @@ public interface AuthService {
      * @param userDTO
      * @return
      */
-    String login(UserDTO userDTO);
+    String login(UserDto userDTO);
 
     /**
      * 验证token

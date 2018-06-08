@@ -2,7 +2,7 @@ package com.skycloud.auth.client.util;
 
 import com.skycloud.auth.client.client.AuthApi;
 import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
-import com.skycloud.common.base.ResponseData;
+import com.skycloud.base.ResponseData;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

@@ -1,16 +1,13 @@
 package com.skycloud.auth.server.interceptor;
 
-import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
-import com.skycloud.common.base.BaseContextHandler;
-import com.skycloud.common.exception.auth.ClientForbiddenException;
-import com.skycloud.common.exception.auth.UserTokenException;
+import com.skycloud.base.BaseContextHandler;
+import com.skycloud.base.exception.auth.UserTokenException;
+import com.skycloud.user.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
@@ -41,7 +38,7 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String header = request.getHeader(userAuthConfiguration.getUserTokenHeader());
 
-        UserDTO userDTO = JwtUtil.unsign(header, UserDTO.class);
+        UserDto userDTO = JwtUtil.unsign(header, UserDto.class);
 
         if (userDTO != null) {
             BaseContextHandler.setToken(header);

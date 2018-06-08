@@ -1,6 +1,6 @@
 package com.skycloud.auth.server.model.domain;
 
-import com.skycloud.common.mybatis.BaseEntity;
+import com.skycloud.core.mybatis.BaseEntity;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

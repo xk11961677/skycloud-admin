@@ -1,7 +1,7 @@
 package com.skycloud.geteway.filter;
 
 import com.netflix.zuul.ZuulFilter;
-import com.skycloud.common.base.BaseContextHandler;
+import com.skycloud.base.BaseContextHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

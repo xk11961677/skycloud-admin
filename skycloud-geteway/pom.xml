@@ -70,9 +70,20 @@
             <groupId>com.skycloud</groupId>
             <artifactId>skycloud-auth-client</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.skycloud</groupId>
-            <artifactId>skycloud-api</artifactId>
+            <artifactId>skycloud-auth-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.skycloud.provider.api</groupId>
+            <artifactId>skycloud-provider-user-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.skycloud.common</groupId>
+            <artifactId>skycloud-common-base</artifactId>
         </dependency>
 
     </dependencies>
