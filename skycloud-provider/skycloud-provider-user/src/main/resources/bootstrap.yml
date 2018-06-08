@@ -48,7 +48,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 mapper:
-  mappers: com.skycloud.common.mybatis.MyMapper
+  mappers: com.skycloud.core.mybatis.MyMapper
   not-empty: false
   identity: MYSQL
 pagehelper:

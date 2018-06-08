@@ -19,11 +19,6 @@ spring:
       username: root
       password: 123456
       druid:
-#          second:
-#              driver-class-name: com.mysql.cj.jdbc.Driver
-#              url: jdbc:mysql://59.110.63.236:3308/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
-#              username: cloud
-#              password: cloud
           initial-size: 5
           max-active: 20
           min-idle: 5
@@ -52,7 +47,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 mapper:
-  mappers: com.skycloud.common.mybatis.MyMapper
+  mappers: com.skycloud.core.mybatis.MyMapper
   not-empty: false
   identity: MYSQL
 pagehelper:
