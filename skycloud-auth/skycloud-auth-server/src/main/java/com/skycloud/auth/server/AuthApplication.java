@@ -18,11 +18,6 @@ import org.springframework.web.client.RestTemplate;
 public class AuthApplication {
 
 
-    @LoadBalanced
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     /**
      * 入口

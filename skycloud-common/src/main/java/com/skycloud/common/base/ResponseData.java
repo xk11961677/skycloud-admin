@@ -32,26 +32,26 @@ public class ResponseData<T> implements Serializable {
     @Getter
     private T data;
 
-    public static <T> ResponseData<T> getSuccessResult(T data) {
+    public static <T> ResponseData<T> ok(T data) {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         result.setData(data);
         return result;
     }
 
-    public static <T> ResponseData<T> getSuccessResult(T data, ResponseData result) {
+    public static <T> ResponseData<T> ok(T data, ResponseData result) {
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         result.setData(data);
         return result;
     }
 
-    public static ResponseData getSuccessResult() {
+    public static ResponseData ok() {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         return result;
     }
 
-    public static <T> ResponseData<T> getFailureResult() {
+    public static <T> ResponseData<T> error() {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(FailureCodeEnum.SERVICE_EXCEPTION.getCode());
@@ -59,14 +59,14 @@ public class ResponseData<T> implements Serializable {
         return result;
     }
 
-    public static <T> ResponseData<T> getFailureResult(String failureCode) {
+    public static <T> ResponseData<T> error(String failureCode) {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCode);
         return result;
     }
 
-    public static <T> ResponseData<T> getFailureResult(String failureCode, String failureMessage) {
+    public static <T> ResponseData<T> error(String failureCode, String failureMessage) {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCode);
@@ -74,7 +74,7 @@ public class ResponseData<T> implements Serializable {
         return result;
     }
 
-    public static <T> ResponseData<T> getFailureResult(FailureCodeEnum failureCodeEnum) {
+    public static <T> ResponseData<T> error(FailureCodeEnum failureCodeEnum) {
         ResponseData result = new ResponseData();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCodeEnum.getCode());
@@ -82,7 +82,7 @@ public class ResponseData<T> implements Serializable {
         return result;
     }
 
-    public boolean isSuccess() {
+    public boolean isOk() {
         return ResultCodeEnum.SUCCESS.getCode().equals(getResultCode());
     }
 

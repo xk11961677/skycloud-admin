@@ -1,7 +1,8 @@
 package com.skycloud.auth.server.service;
 
 
-import com.skycloud.auth.server.entity.AuthClientEntity;
+import com.skycloud.auth.server.model.domain.AuthClient;
+import com.skycloud.auth.server.model.domain.AuthClientService;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public interface AuthCService {
      *  @param serviceId
      *  @return
      */
-    List<AuthClientEntity> getAllowedClient(String serviceId);
+    List<AuthClient> getAllowedClientByServiceId(String serviceId);
 
     /**
      *

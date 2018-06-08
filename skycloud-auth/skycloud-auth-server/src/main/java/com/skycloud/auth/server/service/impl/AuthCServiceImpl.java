@@ -1,8 +1,7 @@
 package com.skycloud.auth.server.service.impl;
 
-import com.skycloud.api.dto.UserDTO;
-import com.skycloud.auth.server.common.exception.ClientInvalidException;
-import com.skycloud.auth.server.entity.AuthClientEntity;
+import com.skycloud.auth.server.model.domain.AuthClient;
+import com.skycloud.common.exception.auth.ClientInvalidException;
 import com.skycloud.auth.server.service.AuthCService;
 import com.skycloud.auth.server.service.AuthClientService;
 import com.skycloud.auth.server.service.AuthClientServiceService;
@@ -10,6 +9,7 @@ import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import java.util.List;
  * @author sky
  **/
 @Service
+@Transactional
 public class AuthCServiceImpl implements AuthCService {
 
     @Autowired
@@ -31,11 +32,11 @@ public class AuthCServiceImpl implements AuthCService {
      * @param clientId
      * @param secret
      * @return
-     * @throws Exception
      */
+    @Transactional(readOnly = true,rollbackFor = Exception.class)
     @Override
-    public String apply(String clientId, String secret) throws Exception {
-        AuthClientEntity client = getClient(clientId, secret);
+    public String apply(String clientId, String secret)  {
+        AuthClient client = getClient(clientId, secret);
         AuthJwtDTO authJwtDTO = new AuthJwtDTO();
         authJwtDTO.setCode(client.getCode());
         authJwtDTO.setName(client.getName());
@@ -52,11 +53,11 @@ public class AuthCServiceImpl implements AuthCService {
      */
     @Override
     public void validate(String clientId, String secret) throws Exception {
-        AuthClientEntity client = new AuthClientEntity();
+        AuthClient client = new AuthClient();
         client.setCode(clientId);
-        List<AuthClientEntity> list = (List<AuthClientEntity>)authClientService.getList(client);
+        client = authClientService.selectOne(client);
 
-        if(list.size()==0||!list.get(0).getSecret().equals(secret)){
+        if(client != null && client.getSecret().equals(secret)){
             throw new ClientInvalidException("Client not found or Client secret is error!");
         }
     }
@@ -72,8 +73,8 @@ public class AuthCServiceImpl implements AuthCService {
      * @return
      */
     @Override
-    public List<AuthClientEntity> getAllowedClient(String serviceId) {
-        List<AuthClientEntity> allowClient = authClientServiceService.getAllowClient(serviceId);
+    public List<AuthClient> getAllowedClientByServiceId(String serviceId) {
+        List<AuthClient> allowClient = authClientServiceService.getAllowClientByServiceId(serviceId);
         return allowClient;
     }
 
@@ -88,15 +89,14 @@ public class AuthCServiceImpl implements AuthCService {
      * @param secret
      * @return
      */
-    private AuthClientEntity getClient(String clientId,String secret) {
-        AuthClientEntity client = new AuthClientEntity();
+    private AuthClient getClient(String clientId,String secret) {
+        AuthClient client = new AuthClient();
         client.setCode(clientId);
-        List<AuthClientEntity> list = (List<AuthClientEntity>)authClientService.getList(client);
+        client = authClientService.selectOne(client);
 
-        if(list.size()==0 || !list.get(0).getSecret().equals(secret)){
+        if(client != null && client.getSecret().equals(secret)){
             throw new ClientInvalidException("Client not found or Client secret is error!");
         }
-        client = list.get(0);
         return client;
     }
 

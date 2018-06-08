@@ -3,7 +3,7 @@ package com.skycloud.auth.server.interceptor;
 import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
 import com.skycloud.auth.server.configuration.ClientAuthConfiguration;
-import com.skycloud.auth.server.entity.AuthClientEntity;
+import com.skycloud.auth.server.model.domain.AuthClient;
 import com.skycloud.auth.server.service.AuthCService;
 import com.skycloud.common.exception.auth.ClientForbiddenException;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +53,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
         if(authJwtDTO != null) {
 
-            List<AuthClientEntity> allowedClient = authCService.getAllowedClient(authJwtDTO.getId() + "");
+            List<AuthClient> allowedClient = authCService.getAllowedClientByServiceId(authJwtDTO.getId() + "");
 
             if(CollectionUtils.isEmpty(allowedClient) &&
                     allowedClient.parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent()) {

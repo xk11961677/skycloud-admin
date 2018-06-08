@@ -47,12 +47,12 @@ public class AuthController {
         UserDTO userDTO  = result.getData();
 
         if(userDTO == null ) {
-            return ResponseData.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"账号或密码错误");
+            return ResponseData.error(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"账号或密码错误");
         }
 
         String token = authService.login(userDTO);
 
-        return ResponseData.getSuccessResult(token);
+        return ResponseData.ok(token);
     }
 
     /**
@@ -68,7 +68,7 @@ public class AuthController {
 
         boolean validate = authService.validate(token);
 
-        return ResponseData.getSuccessResult(validate);
+        return ResponseData.ok(validate);
     }
 
     /**
@@ -86,9 +86,9 @@ public class AuthController {
         String refresh = authService.refresh(token);
 
         if(refresh==null) {
-            return ResponseData.getFailureResult(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"token过期");
+            return ResponseData.error(FailureCodeEnum.SERVICE_EXCEPTION.getCode(),"token过期");
         }else {
-            return ResponseData.getSuccessResult(refresh);
+            return ResponseData.ok(refresh);
         }
     }
 
@@ -103,7 +103,7 @@ public class AuthController {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
         String token = request.getHeader(tokenHeader);
         authService.invalid(token);
-        return ResponseData.getSuccessResult(true);
+        return ResponseData.ok(true);
     }
 
 }

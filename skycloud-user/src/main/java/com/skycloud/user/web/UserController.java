@@ -49,7 +49,7 @@ public class UserController {
             userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);
         }
-        result = ResponseData.getSuccessResult(userDTO);
+        result = ResponseData.ok(userDTO);
         return result;
     }
 

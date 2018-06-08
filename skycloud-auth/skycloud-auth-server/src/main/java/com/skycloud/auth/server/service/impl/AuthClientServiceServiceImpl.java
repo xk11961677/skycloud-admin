@@ -1,12 +1,15 @@
 package com.skycloud.auth.server.service.impl;
 
-import com.skycloud.auth.server.common.service.impl.BaseServiceImpl;
-import com.skycloud.auth.server.entity.AuthClientEntity;
-import com.skycloud.auth.server.entity.AuthClientServiceEntity;
+import com.skycloud.auth.server.mapper.AuthClientServiceMapper;
+import com.skycloud.auth.server.model.domain.AuthClient;
+import com.skycloud.auth.server.model.domain.AuthClientService;
 import com.skycloud.auth.server.service.AuthClientServiceService;
-import org.springframework.stereotype.Repository;
-import lombok.extern.slf4j.Slf4j;
+import com.skycloud.common.support.BaseService;
+import com.skycloud.common.support.IService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -15,25 +18,18 @@ import java.util.List;
  * @author：系统生成
  * @version:1.0
  */
-@Repository
-@Slf4j
-public class AuthClientServiceServiceImpl extends BaseServiceImpl implements AuthClientServiceService {
+@Service
+@Transactional
+public class AuthClientServiceServiceImpl extends BaseService<AuthClientService> implements AuthClientServiceService {
 
-	
+	@Resource
+	private AuthClientServiceMapper authClientServiceMapper;
+
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	@Override
-	public AuthClientServiceEntity get(Integer id){
-		AuthClientServiceEntity authClientServiceEntity = new AuthClientServiceEntity();
-		authClientServiceEntity.setId(id);
-		return (AuthClientServiceEntity)get(authClientServiceEntity);
+	public List<AuthClient> getAllowClientByServiceId(String serviceId) {
+		List<AuthClient> list = authClientServiceMapper.getAllowClientByServiceId(Long.parseLong(serviceId));
+		return list;
 	}
 
-	@Override
-	public List<AuthClientEntity> getAllowClient(String serviceId) {
-		return getList("getAllowClient",serviceId);
-	}
-	
-	
-	/*user customize code start*/
-
-	/*user customize code end*/
 }

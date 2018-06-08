@@ -25,35 +25,35 @@ public class GlobalExceptionHandler {
     public ResponseData clientTokenExceptionHandler(HttpServletResponse response, ClientTokenException ex) {
         response.setStatus(403);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.getFailureResult(ex.getStatus() + "", ex.getMessage());
+        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(UserTokenException.class)
     public ResponseData userTokenExceptionHandler(HttpServletResponse response, UserTokenException ex) {
         response.setStatus(200);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.getFailureResult(ex.getStatus() + "", ex.getMessage());
+        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(UserInvalidException.class)
     public ResponseData userInvalidExceptionHandler(HttpServletResponse response, UserInvalidException ex) {
         response.setStatus(200);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.getFailureResult(ex.getStatus() + "", ex.getMessage());
+        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(BaseException.class)
     public ResponseData baseExceptionHandler(HttpServletResponse response, BaseException ex) {
         logger.error(ex.getMessage(), ex);
         response.setStatus(500);
-        return ResponseData.getFailureResult(ex.getStatus() + "", ex.getMessage());
+        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseData otherExceptionHandler(HttpServletResponse response, Exception ex) {
         response.setStatus(500);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.getFailureResult(CommonConstants.EX_OTHER_CODE + "", ex.getMessage());
+        return ResponseData.error(CommonConstants.EX_OTHER_CODE + "", ex.getMessage());
     }
 
 }

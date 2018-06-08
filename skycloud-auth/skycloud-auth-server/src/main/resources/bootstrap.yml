@@ -37,6 +37,22 @@ spring:
             max-evictable-idle-time-millis: 30000
 
 
+mybatis:
+  type-aliases-package: com.skycloud.auth.server.model.domain
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  mappers: com.skycloud.common.mybatis.MyMapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
 auth:
   service-id: auth
   client:

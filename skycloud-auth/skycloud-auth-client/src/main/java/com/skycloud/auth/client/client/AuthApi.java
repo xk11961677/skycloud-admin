@@ -60,22 +60,22 @@ public interface AuthApi {
 
         @Override
         public ResponseData getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {
-            return ResponseData.getSuccessResult();
+            return ResponseData.ok();
         }
 
         @Override
         public ResponseData<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId) {
-            return ResponseData.getSuccessResult();
+            return ResponseData.ok();
         }
 
         @Override
         public ResponseData<String> login(@RequestParam("username") String username , @RequestParam("password") String password) {
-            return ResponseData.getSuccessResult();
+            return ResponseData.ok();
         }
 
         @Override
         public ResponseData<Boolean> verify() {
-            return ResponseData.getSuccessResult();
+            return ResponseData.ok();
         }
     }
 }

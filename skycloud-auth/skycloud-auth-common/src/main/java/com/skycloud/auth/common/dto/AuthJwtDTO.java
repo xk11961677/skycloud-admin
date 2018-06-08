@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AuthJwtDTO {
 
-    private Integer id;
+    private Long id;
 
     private String code;
 
