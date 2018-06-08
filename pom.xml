@@ -17,7 +17,6 @@
 
     <modules>
         <module>skycloud-common</module>
-        <module>skycloud-mybaits</module>
         <module>skycloud-user</module>
         <module>skycloud-upload</module>
         <module>skycloud-auth</module>
