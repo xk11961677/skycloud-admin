@@ -4,7 +4,7 @@ import com.skycloud.api.dto.UserDTO;
 import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.common.base.BaseContextHandler;
 import com.skycloud.common.base.ResponseData;
-import com.skycloud.user.entity.UserEntity;
+import com.skycloud.user.model.domain.User;
 import com.skycloud.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -41,13 +41,13 @@ public class UserController {
         log.info("login success "+token);
         ResponseData<UserDTO> result;
         UserDTO userDTO = null;
-        UserEntity userEntity = new UserEntity();
-        userEntity.setName(username);
-        userEntity.setPassword(password);
-        UserEntity user = (UserEntity) userService.getOne(userEntity);
-        if (user != null) {
+        User user = new User();
+        user.setName(username);
+        user.setPassword(password);
+        User userVo = userService.selectOne(user);
+        if (userVo != null) {
             userDTO = new UserDTO();
-            BeanUtils.copyProperties(user, userDTO);
+            BeanUtils.copyProperties(userVo, userDTO);
         }
         result = ResponseData.ok(userDTO);
         return result;

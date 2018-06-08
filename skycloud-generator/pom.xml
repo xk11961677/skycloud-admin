@@ -19,6 +19,7 @@
         <module>skycloud-generator-user</module>
         <module>skycloud-generator-admin</module>
         <module>skycloud-generator-auth</module>
+        <module>skycloud-generator-plugin</module>
     </modules>
 
     <properties>

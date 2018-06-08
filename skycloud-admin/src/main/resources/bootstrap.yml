@@ -39,7 +39,27 @@ spring:
           time-between-eviction-runs-millis: 30000
           min-evictable-idle-time-millis: 30000
           max-evictable-idle-time-millis: 30000
+          web-stat-filter:
+            exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+          stat-view-servlet:
+            allow:
+            login-username: admin
+            login-password: admin
 
+mybatis:
+  type-aliases-package: com.skycloud.user.model.domain
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  mappers: com.skycloud.common.mybatis.MyMapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 auth:
   client:
