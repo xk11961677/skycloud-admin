@@ -33,7 +33,7 @@
 				<version>1.4.2.RELEASE</version>
 				<configuration>
 					<fork>true</fork>
-					<mainClass>AdminApplication</mainClass>
+					<mainClass>com.skycloud.AdminApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>

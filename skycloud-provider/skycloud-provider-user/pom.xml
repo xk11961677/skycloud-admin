@@ -33,7 +33,7 @@
                 <version>1.4.2.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.skycloud.user.UserApplication</mainClass>
+                    <mainClass>com.skycloud.UserApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

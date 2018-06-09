@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthController {
 
     @Resource
-    private UserRestApi userApi;
+    private UserRestApi userRestApi;
 
     @Resource
     private AuthService authService;
@@ -43,7 +43,7 @@ public class AuthController {
         UserDto userDto = new UserDto();
         userDto.setName(username);
         userDto.setPassword(password);
-        ResponseData<UserDto> result = userApi.getUser(userDto);
+        ResponseData<UserDto> result = userRestApi.getUser(userDto);
 
         UserDto userDTO  = result.getData();
 

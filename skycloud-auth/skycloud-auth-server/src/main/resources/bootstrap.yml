@@ -17,8 +17,8 @@ spring:
   datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://59.110.63.236:3308/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
-        username: root
-        password: woyourenwu123
+        username: cloud
+        password: cloud
         druid:
             initial-size: 5
             max-active: 20

@@ -1,14 +1,13 @@
 server:
-  contextPath: /upload
   port: 8103
 
 spring:
   application:
-    name: upload
+    name: skycloud-provider-upload
   cloud:
     config:
       uri: ${config_service_uri:http://59.110.63.236:8888/config}
-      name: upload
+      name: skycloud-provider-upload
       profile: ${config_profile:default}
   zipkin:
       base-url: ${zipkin_service_uri:http://localhost:9411}
@@ -33,5 +32,5 @@ upload:
 
 auth:
   client:
-    id: upload
+    id: skycloud-provider-upload
     secret: 123456

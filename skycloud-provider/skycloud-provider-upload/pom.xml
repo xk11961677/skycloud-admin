@@ -56,7 +56,7 @@
                 <version>1.4.2.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.skycloud.upload.UploadApplication</mainClass>
+                    <mainClass>com.skycloud.UploadApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

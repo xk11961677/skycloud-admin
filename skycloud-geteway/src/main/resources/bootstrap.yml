@@ -31,7 +31,7 @@ zuul:
   routes:
     back:
       path: /admin/**
-      serviceId: manager
+      serviceId: skycloud-provider-admin
 
     auth:
       path: /auth/**
@@ -39,11 +39,11 @@ zuul:
 
     user:
       path: /user/**
-      serviceId: user
+      serviceId: skycloud-provider-user
 
     upload:
       path: /upload/**
-      serviceId: upload
+      serviceId: skycloud-provider-upload
 
 gate:
   ignore:

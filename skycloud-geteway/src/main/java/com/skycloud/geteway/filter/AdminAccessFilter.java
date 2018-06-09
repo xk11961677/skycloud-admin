@@ -96,7 +96,9 @@ public class AdminAccessFilter extends ZuulFilter {
         if (StringUtils.isBlank(authToken)) {
             authToken = request.getParameter("token");
         }
-        ctx.addZuulRequestHeader(userAuthConfiguration.getUserTokenHeader(), authToken);
+        if(!StringUtils.isEmpty(authToken)) {
+            ctx.addZuulRequestHeader(userAuthConfiguration.getUserTokenHeader(), authToken);
+        }
         BaseContextHandler.setToken(authToken);
         return JwtUtil.unsign(authToken, UserDto.class);
     }

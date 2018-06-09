@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 @EnableZuulProxy
 @EnableAuthClient
-@ComponentScans(value = { @ComponentScan("com.skycloud.user")})
+@ComponentScan(value = "com.skycloud")
 public class GetewayApplication {
 
     /**

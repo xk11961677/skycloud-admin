@@ -26,11 +26,11 @@
         <!-- MyBatis Generator -->
         <!-- Java接口和实体类 -->
         <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
-        <targetMapperPackage>com.skycloud.provider.mapper</targetMapperPackage>
-        <targetModelPackage>com.skycloud.provider.model.domain</targetModelPackage>
+        <targetMapperPackage>com.skycloud.user.mapper</targetMapperPackage>
+        <targetModelPackage>com.skycloud.user.model.domain</targetModelPackage>
         <!-- XML生成路径 -->
         <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
-        <targetXMLPackage>com.skycloud.provider.mapper</targetXMLPackage>
+        <targetXMLPackage>com.skycloud.user.mapper</targetXMLPackage>
 
 
         <mysql-connector-java.version>6.0.6</mysql-connector-java.version>

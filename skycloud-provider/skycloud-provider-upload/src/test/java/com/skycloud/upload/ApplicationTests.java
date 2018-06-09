@@ -1,5 +1,6 @@
 package com.skycloud.upload;
 
+import com.skycloud.UploadApplication;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

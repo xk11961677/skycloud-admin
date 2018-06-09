@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: admin
+    name: skycloud-provider-admin
   cloud:
     config:
-      uri: ${config_service_uri:http://192.168.43.217:8888/config}
-      name: manager
+      uri: ${config_service_uri:http://59.110.63.236:8888/config}
+      name: skycloud-provider-admin
       profile: ${config_profile:default}
 
   zipkin:
@@ -15,9 +15,9 @@ spring:
 
   datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.43.217:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
+      url: jdbc:mysql://59.110.63.236:3308/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: cloud
+      password: cloud
       druid:
           initial-size: 5
           max-active: 20
@@ -58,5 +58,5 @@ pagehelper:
 
 auth:
   client:
-    id: manager
+    id: skycloud-provider-admin
     secret: 123456
