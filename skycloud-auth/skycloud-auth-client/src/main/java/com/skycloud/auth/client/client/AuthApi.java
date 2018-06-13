@@ -2,7 +2,7 @@ package com.skycloud.auth.client.client;
 
 import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,8 @@ public interface AuthApi {
      */
     @RequestMapping("/client/token")
     @IgnoreClientToken
-    @ResponseBody ResponseData<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
+    @ResponseBody
+    ResponseVo<String> getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 
     /**
      * 根据clientId获取所有可访问服务
@@ -30,7 +31,8 @@ public interface AuthApi {
      */
     @RequestMapping("/client/myClient")
     @IgnoreClientToken
-    @ResponseBody ResponseData<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
+    @ResponseBody
+    ResponseVo<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId);
 
     /**
      * 登录获取token
@@ -39,7 +41,8 @@ public interface AuthApi {
      * @return
      */
     @RequestMapping("/jwt/token")
-    @ResponseBody ResponseData<String> login(@RequestParam("username") String username , @RequestParam("password") String password);
+    @ResponseBody
+    ResponseVo<String> login(@RequestParam("username") String username , @RequestParam("password") String password);
 
     /**
      * 验证登录获取的token是否有效
@@ -47,7 +50,7 @@ public interface AuthApi {
      */
     @RequestMapping("/jwt/verify")
     @ResponseBody
-    ResponseData<Boolean> verify();
+    ResponseVo<Boolean> verify();
 
 
 
@@ -56,23 +59,23 @@ public interface AuthApi {
     class AuthFeignFallback implements AuthApi {
 
         @Override
-        public ResponseData getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {
-            return ResponseData.ok();
+        public ResponseVo getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) {
+            return ResponseVo.ok();
         }
 
         @Override
-        public ResponseData<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId) {
-            return ResponseData.ok();
+        public ResponseVo<List<AuthClientDTO>> getAllowClient(@RequestParam("clientId") String clientId) {
+            return ResponseVo.ok();
         }
 
         @Override
-        public ResponseData<String> login(@RequestParam("username") String username , @RequestParam("password") String password) {
-            return ResponseData.ok();
+        public ResponseVo<String> login(@RequestParam("username") String username , @RequestParam("password") String password) {
+            return ResponseVo.ok();
         }
 
         @Override
-        public ResponseData<Boolean> verify() {
-            return ResponseData.ok();
+        public ResponseVo<Boolean> verify() {
+            return ResponseVo.ok();
         }
     }
 }

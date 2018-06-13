@@ -1,6 +1,6 @@
 package com.skycloud.admin.web;
 
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PermissionController {
 
     @RequestMapping("getAdmin")
-    public ResponseData getAdmin() {
-        return ResponseData.ok();
+    public ResponseVo getAdmin() {
+        return ResponseVo.ok();
     }
 }

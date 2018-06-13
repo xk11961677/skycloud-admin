@@ -2,7 +2,7 @@ package com.skycloud.auth.client.util;
 
 import com.skycloud.auth.client.client.AuthApi;
 import com.skycloud.auth.client.configuration.ClientAuthConfiguration;
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +29,8 @@ public class ServiceAuthUtil {
 
 
     public String acquireToken() {
-        ResponseData<String> token = authApi.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
-        String data = Objects.toString(ofNullable(token).orElse(new ResponseData<>()).getData());
+        ResponseVo<String> token = authApi.getAccessToken(clientConfiguration.getClientId(), clientConfiguration.getSecret());
+        String data = Objects.toString(ofNullable(token).orElse(new ResponseVo<>()).getData());
         return data;
     }
 

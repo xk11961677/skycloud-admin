@@ -1,9 +1,9 @@
 package com.skycloud.auth.server.web;
 
+import com.skycloud.base.ResponseVo;
 import com.skycloud.user.dto.UserDto;
 import com.skycloud.user.service.UserRestApi;
 import com.skycloud.auth.server.configuration.UserAuthConfiguration;
-import com.skycloud.base.ResponseData;
 import com.skycloud.auth.server.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -38,22 +38,22 @@ public class AuthController {
      */
     @RequestMapping("token")
     @ResponseBody
-    public ResponseData<String> crtAuthenticationToken(String username , String password) {
+    public ResponseVo<String> crtAuthenticationToken(String username , String password) {
 
         UserDto userDto = new UserDto();
         userDto.setName(username);
         userDto.setPassword(password);
-        ResponseData<UserDto> result = userRestApi.getUser(userDto);
+        ResponseVo<UserDto> result = userRestApi.getUser(userDto);
 
         UserDto userDTO  = result.getData();
 
         if(userDTO == null ) {
-            return ResponseData.error("","账号或密码错误");
+            return ResponseVo.error("","账号或密码错误");
         }
 
         String token = authService.login(userDTO);
 
-        return ResponseData.ok(token);
+        return ResponseVo.ok(token);
     }
 
     /**
@@ -62,14 +62,14 @@ public class AuthController {
      */
     @RequestMapping("verify")
     @ResponseBody
-    public ResponseData<Boolean> verify(HttpServletRequest request) {
+    public ResponseVo<Boolean> verify(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
 
         String token = request.getHeader(tokenHeader);
 
         boolean validate = authService.validate(token);
 
-        return ResponseData.ok(validate);
+        return ResponseVo.ok(validate);
     }
 
     /**
@@ -79,7 +79,7 @@ public class AuthController {
      */
     @RequestMapping("refresh")
     @ResponseBody
-    public ResponseData<String> refreshAuthenticationToken(HttpServletRequest request) {
+    public ResponseVo<String> refreshAuthenticationToken(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
 
         String token = request.getHeader(tokenHeader);
@@ -87,9 +87,9 @@ public class AuthController {
         String refresh = authService.refresh(token);
 
         if(refresh==null) {
-            return ResponseData.error("","token过期");
+            return ResponseVo.error("","token过期");
         }else {
-            return ResponseData.ok(refresh);
+            return ResponseVo.ok(refresh);
         }
     }
 
@@ -100,11 +100,11 @@ public class AuthController {
      */
     @RequestMapping("invlid")
     @ResponseBody
-    public ResponseData<Boolean> invlid(HttpServletRequest request) {
+    public ResponseVo<Boolean> invlid(HttpServletRequest request) {
         String tokenHeader = userAuthConfiguration.getUserTokenHeader();
         String token = request.getHeader(tokenHeader);
         authService.invalid(token);
-        return ResponseData.ok(true);
+        return ResponseVo.ok(true);
     }
 
 }

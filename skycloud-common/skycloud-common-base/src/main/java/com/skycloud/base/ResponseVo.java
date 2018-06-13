@@ -12,7 +12,7 @@ import java.io.Serializable;
  * 通用返回结果类
  * @param <T>
  */
-public class ResponseData<T> implements Serializable {
+public class ResponseVo<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,50 +32,50 @@ public class ResponseData<T> implements Serializable {
     @Getter
     private T data;
 
-    public static <T> ResponseData<T> ok(T data) {
-        ResponseData result = new ResponseData();
+    public static <T> ResponseVo<T> ok(T data) {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         result.setData(data);
         return result;
     }
 
-    public static <T> ResponseData<T> ok(T data, ResponseData result) {
+    public static <T> ResponseVo<T> ok(T data, ResponseVo result) {
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         result.setData(data);
         return result;
     }
 
-    public static ResponseData ok() {
-        ResponseData result = new ResponseData();
+    public static ResponseVo ok() {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.SUCCESS.getCode());
         return result;
     }
 
-    public static <T> ResponseData<T> error() {
-        ResponseData result = new ResponseData();
+    public static <T> ResponseVo<T> error() {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(FailureCodeEnum.SERVICE_EXCEPTION.getCode());
         result.setFailureMessage(FailureCodeEnum.SERVICE_EXCEPTION.getMsg());
         return result;
     }
 
-    public static <T> ResponseData<T> error(String failureCode) {
-        ResponseData result = new ResponseData();
+    public static <T> ResponseVo<T> error(String failureCode) {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCode);
         return result;
     }
 
-    public static <T> ResponseData<T> error(String failureCode, String failureMessage) {
-        ResponseData result = new ResponseData();
+    public static <T> ResponseVo<T> error(String failureCode, String failureMessage) {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCode);
         result.setFailureMessage(failureMessage);
         return result;
     }
 
-    public static <T> ResponseData<T> error(FailureCodeEnum failureCodeEnum) {
-        ResponseData result = new ResponseData();
+    public static <T> ResponseVo<T> error(FailureCodeEnum failureCodeEnum) {
+        ResponseVo result = new ResponseVo();
         result.setResultCode(ResultCodeEnum.FAILURE.getCode());
         result.setFailureCode(failureCodeEnum.getCode());
         result.setFailureMessage(failureCodeEnum.getMsg());
@@ -87,6 +87,6 @@ public class ResponseData<T> implements Serializable {
     }
 
     public String toString() {
-        return "ResponseData [resultCode=" + this.resultCode + ", failureCode=" + this.failureCode + ", failureMessage=" + this.failureMessage + ", data=" + this.data + "]";
+        return "ResponseVo [resultCode=" + this.resultCode + ", failureCode=" + this.failureCode + ", failureMessage=" + this.failureMessage + ", data=" + this.data + "]";
     }
 }

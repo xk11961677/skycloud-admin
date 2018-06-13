@@ -1,10 +1,11 @@
-package com.skycloud.user.web;
+package com.skycloud.user.web.rpc;
 
 import com.skycloud.auth.client.annotation.IgnoreUserToken;
 import com.skycloud.base.BaseContextHandler;
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import com.skycloud.user.dto.UserDto;
 import com.skycloud.user.model.domain.User;
+import com.skycloud.user.service.UserRestApi;
 import com.skycloud.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -19,10 +20,10 @@ import javax.annotation.Resource;
  * @description
  **/
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 @Slf4j
 @IgnoreUserToken
-public class UserController {
+public class UserController implements UserRestApi {
 
     @Resource
     private UserService userService;
@@ -32,12 +33,13 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping("getUser")
+    @RequestMapping("/getUser")
     @ResponseBody
-    public ResponseData<UserDto> getUser(@RequestBody UserDto userDto) {
+    @Override
+    public ResponseVo<UserDto> getUser(@RequestBody UserDto userDto) {
         String token = BaseContextHandler.getToken();
         log.info("login success "+token);
-        ResponseData<UserDto> result;
+        ResponseVo<UserDto> result;
         UserDto userDTO = null;
         User user = new User();
         user.setName(userDto.getName());
@@ -47,7 +49,7 @@ public class UserController {
             userDTO = new UserDto();
             BeanUtils.copyProperties(userVo, userDTO);
         }
-        result = ResponseData.ok(userDTO);
+        result = ResponseVo.ok(userDTO);
         return result;
     }
 

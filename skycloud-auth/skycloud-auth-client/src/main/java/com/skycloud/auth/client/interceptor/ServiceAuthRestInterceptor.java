@@ -6,7 +6,7 @@ import com.skycloud.auth.client.annotation.IgnoreClientToken;
 import com.skycloud.auth.common.dto.AuthClientDTO;
 import com.skycloud.auth.common.dto.AuthJwtDTO;
 import com.skycloud.auth.common.utils.JwtUtil;
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import com.skycloud.base.exception.auth.ClientForbiddenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
         if (authJwtDTO != null) {
 
-            ResponseData<List<AuthClientDTO>> result = authApi.getAllowClient(authJwtDTO.getId() + "");
+            ResponseVo<List<AuthClientDTO>> result = authApi.getAllowClient(authJwtDTO.getId() + "");
 
             if (result != null && result.getData() != null && result.getData().parallelStream().filter(authClientDTO -> authClientDTO.getCode().equals(appName)).findFirst().isPresent()) {
                 return super.preHandle(request, response, handler);

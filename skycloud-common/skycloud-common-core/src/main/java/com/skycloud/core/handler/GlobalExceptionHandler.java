@@ -1,6 +1,6 @@
 package com.skycloud.core.handler;
 
-import com.skycloud.base.ResponseData;
+import com.skycloud.base.ResponseVo;
 import com.skycloud.base.constant.CommonConstants;
 import com.skycloud.base.exception.BussinessException;
 import com.skycloud.base.exception.auth.ClientTokenException;
@@ -22,38 +22,38 @@ public class GlobalExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(ClientTokenException.class)
-    public ResponseData clientTokenExceptionHandler(HttpServletResponse response, ClientTokenException ex) {
+    public ResponseVo clientTokenExceptionHandler(HttpServletResponse response, ClientTokenException ex) {
         response.setStatus(403);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
+        return ResponseVo.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(UserTokenException.class)
-    public ResponseData userTokenExceptionHandler(HttpServletResponse response, UserTokenException ex) {
+    public ResponseVo userTokenExceptionHandler(HttpServletResponse response, UserTokenException ex) {
         response.setStatus(200);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
+        return ResponseVo.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(UserInvalidException.class)
-    public ResponseData userInvalidExceptionHandler(HttpServletResponse response, UserInvalidException ex) {
+    public ResponseVo userInvalidExceptionHandler(HttpServletResponse response, UserInvalidException ex) {
         response.setStatus(200);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
+        return ResponseVo.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(BussinessException.class)
-    public ResponseData baseExceptionHandler(HttpServletResponse response, BussinessException ex) {
+    public ResponseVo baseExceptionHandler(HttpServletResponse response, BussinessException ex) {
         logger.error(ex.getMessage(), ex);
         response.setStatus(500);
-        return ResponseData.error(ex.getStatus() + "", ex.getMessage());
+        return ResponseVo.error(ex.getStatus() + "", ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseData otherExceptionHandler(HttpServletResponse response, Exception ex) {
+    public ResponseVo otherExceptionHandler(HttpServletResponse response, Exception ex) {
         response.setStatus(500);
         logger.error(ex.getMessage(), ex);
-        return ResponseData.error(CommonConstants.EX_OTHER_CODE + "", ex.getMessage());
+        return ResponseVo.error(CommonConstants.EX_OTHER_CODE + "", ex.getMessage());
     }
 
 }
